@@ -563,10 +563,14 @@ class BrowserController:
                             time.sleep(1)
                             continue
 
-                        for verdict in known_verdicts:
+                        # Check errors first to avoid false accepted
+                        for verdict in known_verdicts[1:]:
                             if verdict.lower() in ele_text.lower():
                                 result_text = verdict
                                 break
+                        if not result_text and "accepted" in ele_text.lower():
+                            result_text = "Accepted"
+
                         if result_text:
                             break
                         if not any(ind.lower() in ele_text.lower() for ind in evaluating_indicators):
@@ -580,30 +584,16 @@ class BrowserController:
                     if any(ind.lower() in ctext.lower() for ind in evaluating_indicators):
                         time.sleep(1)
                         continue
-                    for verdict in known_verdicts:
+                    for verdict in known_verdicts[1:]:
                         if verdict.lower() in ctext.lower():
                             result_text = verdict
                             break
+                    if not result_text and "accepted" in ctext.lower():
+                        result_text = "Accepted"
                     if result_text:
                         break
 
-                # 3. Explicit color-coded result elements
-                green_res = self.page.ele('css:[class*="text-green"], [class*="text-sd-success"]')
-                if green_res and "accepted" in green_res.text.lower():
-                    result_text = "Accepted"
-                    break
-
-                red_res = self.page.ele('css:[class*="text-red"], [class*="text-sd-destructive"]')
-                if red_res:
-                    r_text = red_res.text.strip()
-                    for v in known_verdicts[1:]:
-                        if v.lower() in r_text.lower():
-                            result_text = v
-                            break
-                    if result_text:
-                        break
-
-                # 4. Fallback: If on submissions URL, scan body text but check evaluating first
+                # 3. Fallback: If on submissions URL, scan body text but check evaluating first
                 body = self.page.ele('tag:body')
                 page_text = body.text if body else ""
 
@@ -662,6 +652,47 @@ class BrowserController:
                 error_output=result_text,
                 difficulty=self._last_difficulty,
             )
+
+    def verify_manual_submission(self, assignment_id: str, problem_id: str) -> tuple[bool, Optional[str]]:
+        """Verify that the current page actually shows 'Accepted' before capturing screenshot."""
+        time.sleep(2)
+        error_indicators = ["wrong answer", "runtime error", "compile error", "time limit exceeded", "memory limit exceeded"]
+        
+        result_ele = self.page.ele('css:[data-e2e-locator="submission-result"]')
+        ele_text = result_ele.text.strip() if result_ele else ""
+        
+        if any(err in ele_text.lower() for err in error_indicators):
+            logger.error(f"Manual verification failed: Submission element indicates '{ele_text}'.")
+            return False, None
+            
+        is_accepted = False
+        if "accepted" in ele_text.lower():
+            is_accepted = True
+        else:
+            container = self.page.ele('css:div[class*="status-column"], div[class*="submission-detail"], div[class*="result-container"]')
+            if container:
+                ctext = container.text.strip()
+                if any(err in ctext.lower() for err in error_indicators):
+                    logger.error("Manual verification failed: Submission container indicates an error.")
+                    return False, None
+                if "accepted" in ctext.lower():
+                    is_accepted = True
+
+        if not is_accepted:
+            logger.error("Manual verification failed: 'Accepted' verdict not found on screen.")
+            return False, None
+
+        screenshot_dir = os.path.abspath(os.path.join(self.screenshots_dir, f"assignment_{assignment_id}"))
+        os.makedirs(screenshot_dir, exist_ok=True)
+        screenshot_path = os.path.join(screenshot_dir, f"{problem_id}.png").replace('\\', '/')
+        try:
+            self.page.set.window.max()
+            time.sleep(1)
+        except Exception:
+            pass
+        self.page.get_screenshot(path=screenshot_path, full_page=True)
+        logger.info(f"[bold cyan]Screenshot captured:[/bold cyan] [cyan]{screenshot_path}[/cyan]")
+        return True, screenshot_path
 
     # ------------------------------------------------------------------
     # Cleanup

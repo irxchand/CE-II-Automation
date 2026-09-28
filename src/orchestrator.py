@@ -135,21 +135,25 @@ class Orchestrator:
                         logger.error(f"Problem Failed: {title}. Error: {result.status_text}")
                         self.console.print(f"[bold yellow]Manual Debugging Mode:[/bold yellow] The problem '{title}' failed with '{result.status_text}'.")
                         self.console.print("Please fix the code directly in the LeetCode browser window, then submit it.")
-                        self.console.print("Once you see 'Accepted' in the browser, press Enter to continue.")
+                        self.console.print("Once you see 'Accepted' in the browser, press Enter to verify and continue (or type 'skip' to mark as failed).")
                         
-                        Prompt.ask("[cyan]Press Enter after you have successfully submitted...[/cyan]")
-                        
-                        logger.info(f"Manual debugging complete. Assuming Accepted for {title}.")
-                        screenshot_path = os.path.join(
-                            ".local", "screenshots",
-                            f"assignment_{assignment_id}",
-                            f"{leetcode_id}.png"
-                        )
-                        os.makedirs(os.path.dirname(screenshot_path), exist_ok=True)
-                        self.browser_controller.page.get_screenshot(path=screenshot_path, full_page=True)
+                        while True:
+                            user_input = Prompt.ask("[cyan]Press Enter to verify 'Accepted', or type 'skip'[/cyan]", default="")
+                            if user_input.strip().lower() == "skip":
+                                logger.warning(f"User skipped manual debugging for {title}. Marking as FAILED.")
+                                self.state_manager.update_problem_state(assignment_id, leetcode_id, 'FAILED')
+                                break
 
-                        self.state_manager.update_problem_state(assignment_id, leetcode_id, 'VERIFIED')
-                        self.state_manager.update_problem_state(assignment_id, leetcode_id, 'COMPLETED')
+                            logger.info(f"Verifying manual submission for {title} in browser...")
+                            verified, screenshot_path = self.browser_controller.verify_manual_submission(assignment_id, str(leetcode_id))
+                            if verified and screenshot_path:
+                                logger.info(f"[bold green]Manual submission verified: Accepted for {title}![/bold green]")
+                                self.state_manager.update_problem_state(assignment_id, leetcode_id, 'VERIFIED')
+                                self.state_manager.update_problem_state(assignment_id, leetcode_id, 'COMPLETED')
+                                break
+                            else:
+                                self.console.print("[bold red]\u2718 Verification failed: LeetCode does not show 'Accepted' yet.[/bold red]")
+                                self.console.print("Please ensure your submission has finished evaluating and is showing green 'Accepted'.")
                         break
                     # For injection failures or timeouts, the while loop will retry
             else:

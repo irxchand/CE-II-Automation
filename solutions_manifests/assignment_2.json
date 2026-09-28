@@ -430,7 +430,7 @@
         "language": "Python",
         "solution_code": "# Time:  O(n)\n# Space: O(1)\n\nclass ListNode(object):\n    def __init__(self, x):\n        self.val = x\n        self.next = None\n\nclass Solution(object):\n    def middleNode(self, head):\n        \"\"\"\n        :type head: ListNode\n        :rtype: ListNode\n        \"\"\"\n        slow, fast = head, head\n        while fast and fast.next:\n            slow, fast = slow.next, fast.next.next\n        return slow\n\n",
         "explanation": "Middle of the Linked List - Given the head of a singly linked list, return the middle node of the linked list. If there are two middle nodes, return the second middle node.",
-        "url": "https://leetcode.com/problems/hand-of-straights/"
+        "url": "https://leetcode.com/problems/middle-of-the-linked-list/"
     },
     {
         "assignment_id": 2,
@@ -441,7 +441,7 @@
         "language": "Python",
         "solution_code": "# Time:  O(n)\n# Space: O(h)\n\nclass TreeNode(object):\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\n\nclass Solution(object):\n    def increasingBST(self, root):\n        \"\"\"\n        :type root: TreeNode\n        :rtype: TreeNode\n        \"\"\"\n        def increasingBSTHelper(root, tail):\n            if not root:\n                return tail\n            result = increasingBSTHelper(root.left, root)\n            root.left = None\n            root.right = increasingBSTHelper(root.right, tail)\n            return result\n        return increasingBSTHelper(root, None)\n\n",
         "explanation": "In-depth solution and explanation for LeetCode 897. Increasing Order Search Tree in Python, Java, C++ and more. Intuitions, example walk through, and complexity analysis. Better than official and forum solutions.",
-        "url": "https://leetcode.com/problems/prime-palindrome/"
+        "url": "https://leetcode.com/problems/increasing-order-search-tree/"
     },
     {
         "assignment_id": 2,
@@ -452,7 +452,7 @@
         "language": "Python",
         "solution_code": "# Time:  O(n)\n# Space: O(1)\n\nclass Solution(object):\n    def sortArrayByParity(self, A):\n        \"\"\"\n        :type A: List[int]\n        :rtype: List[int]\n        \"\"\"\n        i = 0\n        for j in xrange(len(A)):\n            if A[j] % 2 == 0:\n                A[i], A[j] = A[j], A[i]\n                i += 1\n        return A\n\n",
         "explanation": "Given an integer array nums , move all the even integers at the beginning of the array followed by all the odd integers. Return any array that satisfies this ...",
-        "url": "https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/"
+        "url": "https://leetcode.com/problems/sort-array-by-parity/"
     },
     {
         "assignment_id": 2,
@@ -463,7 +463,7 @@
         "language": "Python",
         "solution_code": "# Time:  O(1) on average\n# Space: O(w), w means the size of the last milliseconds.\n\nimport collections\n\n\nclass RecentCounter(object):\n\n    def __init__(self):\n        self.__q = collections.deque()\n\n    def ping(self, t):\n        \"\"\"\n        :type t: int\n        :rtype: int\n        \"\"\"\n        self.__q.append(t)\n        while self.__q[0] < t-3000:\n            self.__q.popleft()\n        return len(self.__q)\n",
         "explanation": "Can you solve this real interview question? Number of Recent Calls - You have a RecentCounter class which counts the number of recent requests within a certain time frame. Implement the RecentCounter class: * RecentCounter() Initializes the counter with zero recent requests. * int ping(int t) Adds a new request at time t, where t represents some time in milliseconds, and returns the number of ...",
-        "url": "https://leetcode.com/problems/increasing-order-search-tree/"
+        "url": "https://leetcode.com/problems/number-of-recent-calls/"
     },
     {
         "assignment_id": 2,
@@ -474,7 +474,7 @@
         "language": "Python",
         "solution_code": "# Time:  O(n)\n# Space: O(h)\n\n# Definition for a binary tree node.\nclass TreeNode(object):\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\n\nclass Solution(object):\n    def rangeSumBST(self, root, L, R):\n        \"\"\"\n        :type root: TreeNode\n        :type L: int\n        :type R: int\n        :rtype: int\n        \"\"\"\n        result = 0\n        s = [root]\n        while s:\n            node = s.pop()\n            if node:\n                if L <= node.val <= R:\n                    result += node.val\n                if L < node.val:\n                    s.append(node.left)\n                if node.val < R:\n                    s.append(node.right)\n        return result\n",
         "explanation": "Given the root node of a binary search tree and two integers low and high , return the sum of values of all nodes with a value in the inclusive range [low, ...",
-        "url": "https://leetcode.com/problems/numbers-at-most-n-given-digit-set/"
+        "url": "https://leetcode.com/problems/range-sum-of-bst/"
     },
     {
         "assignment_id": 2,
@@ -485,7 +485,7 @@
         "language": "Python",
         "solution_code": "# Time:  O(n)\n# Space: O(h)\n\n# Definition for a binary tree node.\nclass TreeNode(object):\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\n\nclass Solution(object):\n    def isUnivalTree(self, root):\n        \"\"\"\n        :type root: TreeNode\n        :rtype: bool\n        \"\"\"\n        s = [root]\n        while s:\n            node = s.pop()\n            if not node:\n                continue\n            if node.val != root.val:\n                return False\n            s.append(node.left)\n            s.append(node.right)\n        return True\n    \n\n# Time:  O(n)\n# Space: O(h)\nclass Solution2(object):\n    def isUnivalTree(self, root):\n        \"\"\"\n        :type root: TreeNode\n        :rtype: bool\n        \"\"\"\n        return (not root.left or (root.left.val == root.val and self.isUnivalTree(root.left))) and \\\n               (not root.right or (root.right.val == root.val and self.isUnivalTree(root.right)))\n",
         "explanation": "A binary tree is uni-valued if every node in the tree has the same value. Given the root of a binary tree, return true if the given tree is uni-valued, or false otherwise.",
-        "url": "https://leetcode.com/problems/unique-email-addresses/"
+        "url": "https://leetcode.com/problems/univalued-binary-tree/"
     },
     {
         "assignment_id": 2,
@@ -496,7 +496,7 @@
         "language": "Python",
         "solution_code": "# Time:  O(n)\n# Space: O(h)\n\n# Definition for a binary tree node.\nclass TreeNode(object):\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\n\nclass Solution(object):\n    def sumRootToLeaf(self, root):\n        \"\"\"\n        :type root: TreeNode\n        :rtype: int\n        \"\"\"\n        M = 10**9 + 7\n        def sumRootToLeafHelper(root, val):\n            if not root:\n                return 0\n            val = (val*2 + root.val) % M\n            if not root.left and not root.right:\n                return val\n            return (sumRootToLeafHelper(root.left, val) +\n                    sumRootToLeafHelper(root.right, val)) % M\n        \n        return sumRootToLeafHelper(root, 0)\n",
         "explanation": "Sum of Root To Leaf Binary Numbers - You are given the root of a binary tree where each node has a value 0 or 1. Each root-to-leaf path represents a binary number starting with the most significant bit. * For example, if the path is 0 -> 1 -> 1 -> 0 -> 1, then this could represent 01101 in binary, which is 13.",
-        "url": "https://leetcode.com/problems/unique-paths-iii/"
+        "url": "https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/"
     },
     {
         "assignment_id": 2,

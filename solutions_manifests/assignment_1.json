@@ -422,7 +422,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(m + n)\n# Space: O(m + n)\n\nSELECT p.product_name, \n       s.year, \n       s.price \nFROM   sales AS s \n       INNER JOIN product AS p \n               ON s.product_id = p.product_id \n",
         "explanation": "Each row of this table indicates the product name of each product. Write a solution to report the product_name, year, and price for each sale_id in the Sales table. Return the resulting table in any order. The result format is in the following example.",
-        "url": "https://leetcode.com/problems/digit-count-in-range/"
+        "url": "https://leetcode.com/problems/product-sales-analysis-i/"
     },
     {
         "assignment_id": 1,
@@ -477,7 +477,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(n)\n# Space: O(n)\n\nSELECT player_id, \n       Min(event_date) first_login \nFROM   activity \nGROUP  BY player_id \nORDER  BY NULL \n",
         "explanation": "This table shows the activity of players of some games. Each row is a record of a player who logged in and played a number of games (possibly 0) before logging out on someday using some device. Write a solution to find the first login date for each player. Return the result table in any order. The result format is in the following example.",
-        "url": "https://leetcode.com/problems/all-paths-from-source-lead-to-destination/"
+        "url": "https://leetcode.com/problems/game-play-analysis-i/"
     },
     {
         "assignment_id": 1,
@@ -488,7 +488,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(n)\n# Space: O(n)\n\nSELECT Round(Count(NULLIF(a.event_date, NULL)) / Count(*), 2) fraction \nFROM   activity a \n       RIGHT JOIN (SELECT player_id, \n                          Min(event_date) event_date \n                   FROM   activity \n                   GROUP  BY player_id \n                   ORDER  BY NULL) b \n               ON Datediff(a.event_date, b.event_date) = 1 \n                  AND a.player_id = b.player_id \n",
         "explanation": "This table shows the activity of players of some games. Each row is a record of a player who logged in and played a number of games (possibly 0) before logging out on someday using some device. Write a solution to report the fraction of players that logged in again on the day after the day they first logged in, rounded to 2 decimal places.",
-        "url": "https://leetcode.com/problems/shortest-path-to-get-food/"
+        "url": "https://leetcode.com/problems/game-play-analysis-iv/"
     },
     {
         "assignment_id": 1,
@@ -532,6 +532,6 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(n)\n# Space: O(n)\n\nSELECT id, \n       SUM(IF(month = 'Jan', revenue, NULL)) AS Jan_Revenue, \n       SUM(IF(month = 'Feb', revenue, NULL)) AS Feb_Revenue, \n       SUM(IF(month = 'Mar', revenue, NULL)) AS Mar_Revenue, \n       SUM(IF(month = 'Apr', revenue, NULL)) AS Apr_Revenue, \n       SUM(IF(month = 'May', revenue, NULL)) AS May_Revenue, \n       SUM(IF(month = 'Jun', revenue, NULL)) AS Jun_Revenue, \n       SUM(IF(month = 'Jul', revenue, NULL)) AS Jul_Revenue, \n       SUM(IF(month = 'Aug', revenue, NULL)) AS Aug_Revenue, \n       SUM(IF(month = 'Sep', revenue, NULL)) AS Sep_Revenue, \n       SUM(IF(month = 'Oct', revenue, NULL)) AS Oct_Revenue, \n       SUM(IF(month = 'Nov', revenue, NULL)) AS Nov_Revenue, \n       SUM(IF(month = 'Dec', revenue, NULL)) AS Dec_Revenue \nFROM   department \nGROUP  BY id;\n",
         "explanation": "Input: Department table: ... +------+-------------+-------------+-------------+-----+-------------+ Explanation: The revenue from Apr to Dec is null....",
-        "url": "https://leetcode.com/problems/game-play-analysis-i/"
+        "url": "https://leetcode.com/problems/reformat-department-table/"
     }
 ]

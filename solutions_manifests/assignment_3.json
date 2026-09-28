@@ -316,7 +316,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(n)\n# Space: O(n)\n\nSELECT project_id \nFROM   project \nGROUP  BY project_id \nHAVING Count(employee_id) = (SELECT Count(employee_id) \n                             FROM   project \n                             GROUP  BY project_id \n                             ORDER  BY Count(employee_id) DESC \n                             LIMIT  1) \nORDER  BY NULL \n",
         "explanation": "Can you solve this real interview question? Project Employees II - Level up your coding skills and quickly land a job. This is the best place to expand your knowledge and get prepared for your next interview.",
-        "url": "https://leetcode.com/problems/brace-expansion/"
+        "url": "https://leetcode.com/problems/project-employees-ii/"
     },
     {
         "assignment_id": 3,
@@ -327,7 +327,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O((m + n)^2)\n# Space: O(m + n)\n\nSELECT project_id, \n       p1.employee_id \nFROM   project AS p1 \n       INNER JOIN employee AS e1 \n               ON p1.employee_id = e1.employee_id \nWHERE  ( project_id, experience_years ) IN (SELECT project_id, \n                                                   Max(experience_years) \n                                            FROM   project AS p2 \n                                                   INNER JOIN employee AS e2 \n                                                           ON p2.employee_id = \n                                                              e2.employee_id \n                                            GROUP  BY project_id \n                                            ORDER  BY NULL) \n",
         "explanation": "Input: Project table: ... +-------------+---------------+ Explanation: Both employees with id 1 and 3 have the most experience among the employees of the first project....",
-        "url": "https://leetcode.com/problems/confusing-number-ii/"
+        "url": "https://leetcode.com/problems/project-employees-iii/"
     },
     {
         "assignment_id": 3,
@@ -338,7 +338,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(n)\n# Space: O(n)\n\nSELECT seller_id \nFROM   sales \nGROUP  BY seller_id \nHAVING Sum(price) = (SELECT Sum(price) \n                     FROM   sales \n                     GROUP  BY seller_id \n                     ORDER  BY Sum(price) DESC \n                     LIMIT  1) \nORDER  BY NULL\n",
         "explanation": "Input: Sales table: +---------+------------+------+----------+-------+ | sale_id | product_id | year | quantity | price | +---------+------------+------+----------+-------+ | 1 | 100 | 2008 | 10 | 5000 | | 2 | 100 | 2009 | 12 | 5000 | | 7 | 200 | 2011 | 15 | 9000 | +---------+------------+------+----------+-------+ Product table: +------------+--------------+ | product_id | product_name | +------------+--------------+ | 100 | Nokia | | 200 | Apple | | 300 | Samsung | +------------+--------------+ Output: +--------------+-------+-------+ | product_name | year | price | +--------------+-------+-------+ | Nokia | 2008 | 5000 | | Nokia | 2009 | 5000 | | Apple | 2011 | 9000 | +--------------+-------+-------+ Explanation: From sale_id = 1, we can conclude that Nokia was sold for 5000 in the year 2008.",
-        "url": "https://leetcode.com/problems/sum-of-digits-in-the-minimum-number/"
+        "url": "https://leetcode.com/problems/sales-analysis-i/"
     },
     {
         "assignment_id": 3,
@@ -349,7 +349,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(m + n)\n# Space: O(m + n)\n\nSELECT DISTINCT buyer_id \nFROM   sales \n       INNER JOIN product \n         ON sales.product_id = product.product_id \nWHERE  product.product_name = \"s8\" \n       AND buyer_id NOT IN (SELECT DISTINCT buyer_id \n                            FROM   sales \n                                   INNER JOIN product \n                                     ON sales.product_id = product.product_id \n                            WHERE  product.product_name = \"iphone\"); \n",
         "explanation": "Sales Analysis II - Level up your coding skills and quickly land a job. This is the best place to expand your knowledge and get prepared for your next interview.",
-        "url": "https://leetcode.com/problems/two-sum-less-than-k/"
+        "url": "https://leetcode.com/problems/sales-analysis-ii/"
     },
     {
         "assignment_id": 3,
@@ -360,7 +360,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(m + n)\n# Space: O(m + n)\n\nSELECT product_id, \n       product_name \nFROM   product \nWHERE  product_id NOT IN (SELECT product_id \n                          FROM   sales \n                          WHERE  sale_date NOT BETWEEN \n                                 '2019-01-01' AND '2019-03-31'); \n",
         "explanation": "We group the Sales table by product_id. We then use HAVING to ensure that the MIN(sale_date) >= '2019-01-01' and MAX(sale_date) <= '2019-03-31'. Finally, we join with the Product table to get the product names.",
-        "url": "https://leetcode.com/problems/find-k-length-substrings-with-no-repeated-characters/"
+        "url": "https://leetcode.com/problems/sales-analysis-iii/"
     },
     {
         "assignment_id": 3,
@@ -382,7 +382,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(m + n)\n# Space: O(n)\n\nSELECT b.book_id, \n       b.NAME \nFROM   books AS b \n       LEFT JOIN orders AS o \n              ON b.book_id = o.book_id \n                 AND dispatch_date BETWEEN '2018-06-23' AND '2019-6-23' \nWHERE  Datediff('2019-06-23', b.available_from) > 30 \nGROUP BY book_id \nHAVING Sum(IFNULL(o.quantity, 0)) < 10 ORDER  BY NULL \n",
         "explanation": "Unpopular Books - Level up your coding skills and quickly land a job. This is the best place to expand your knowledge and get prepared for your next interview.",
-        "url": "https://leetcode.com/problems/largest-unique-number/"
+        "url": "https://leetcode.com/problems/unpopular-books/"
     },
     {
         "assignment_id": 3,
@@ -404,7 +404,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(n)\n# Space: O(n)\n\nSELECT business_id\nFROM EVENTS\nJOIN\n  (SELECT event_type,\n          avg(occurences) AS average\n   FROM EVENTS\n   GROUP BY event_type) AS TEMP ON Events.event_type = temp.event_type\nAND Events.occurences > temp.average\nGROUP BY business_id\nHAVING count(DISTINCT Events.event_type) > 1\nORDER BY NULL\n",
         "explanation": "7 Feb 2023 \u00b7 An active business is a business that has more than one event type with occurrences greater than the average occurrences of that event type ...",
-        "url": "https://leetcode.com/problems/minimum-cost-to-connect-sticks/"
+        "url": "https://leetcode.com/problems/active-businesses/"
     },
     {
         "assignment_id": 3,
@@ -426,7 +426,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(m + n)\n# Space: O(n)\n\nSELECT ROUND(AVG(removal_percent), 2) average_daily_percent\nFROM\n  (SELECT a.action_date,\n          COUNT(DISTINCT r.post_id) / COUNT(DISTINCT a.post_id) * 100 removal_percent\n   FROM Actions a\n   LEFT JOIN Removals r ON a.post_id = r.post_id\n   WHERE a.extra = 'spam'\n   GROUP BY a.action_date\n   ORDER BY NULL) tmp\n",
         "explanation": "We can join the actions table with the removals table, calculate the proportion of removed posts per day, and then take the average across all days.",
-        "url": "https://leetcode.com/problems/before-and-after-puzzle/"
+        "url": "https://leetcode.com/problems/reported-posts-ii/"
     },
     {
         "assignment_id": 3,
@@ -437,7 +437,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(n)\n# Space: O(n)\n\nSELECT activity_date           AS day, \n       Count(DISTINCT user_id) AS active_users \nFROM   activity \nGROUP  BY activity_date \nHAVING Datediff(\"2019-07-27\", activity_date) < 30 \nORDER  BY NULL \n",
         "explanation": "The activity_type column is an ENUM (category) of type ('open_session', 'end_session', 'scroll_down', 'send_message'). The table shows the user activities for a social media website. Note that each session belongs to exactly one user. Write a solution to find the daily active user count for a period of 30 days ending 2019-07-27 inclusively.",
-        "url": "https://leetcode.com/problems/how-many-apples-can-you-put-into-the-basket/"
+        "url": "https://leetcode.com/problems/user-activity-for-the-past-30-days-i/"
     },
     {
         "assignment_id": 3,
@@ -448,7 +448,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(n)\n# Space: O(n)\n\nSELECT Round(Ifnull(Count(DISTINCT session_id) / Count(DISTINCT user_id), 0), 2) \n       AS \n       average_sessions_per_user \nFROM   activity \nWHERE  Datediff(\"2019-07-27\", activity_date) < 30 \n",
         "explanation": "Write a solution to find the daily active user count for a period of 30 days. A user was active on someday if they made at least one activity on that day. ...",
-        "url": "https://leetcode.com/problems/minimum-knight-moves/"
+        "url": "https://leetcode.com/problems/user-activity-for-the-past-30-days-ii/"
     },
     {
         "assignment_id": 3,
@@ -470,7 +470,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(nlogn)\n# Space: O(n)\n\nSELECT DISTINCT viewer_id AS id \nFROM   views \nGROUP  BY viewer_id, \n          view_date \nHAVING Count(DISTINCT article_id) > 1 \nORDER  BY id\n",
         "explanation": "Can you solve this real interview question? Article Views I - Table: Views +---------------+---------+ | Column Name | Type | +---------------+---------+ ...",
-        "url": "https://leetcode.com/problems/intersection-of-three-sorted-arrays/"
+        "url": "https://leetcode.com/problems/article-views-ii/"
     },
     {
         "assignment_id": 3,
@@ -492,7 +492,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(mlogn), m is the number of unique product id, n is the number of changed dates\n# Space: O(m)\n\nSELECT t1.product_id                      AS product_id, \n       IF(Isnull(t2.price), 10, t2.price) AS price \nFROM   (SELECT DISTINCT product_id \n        FROM   products) AS t1 \n       left join (SELECT product_id, \n                         new_price AS price \n                  FROM   products \n                  WHERE  ( product_id, change_date ) IN (SELECT product_id, \n                                                                Max(change_date) \n                                                         FROM   products \n                                                         WHERE change_date <= '2019-08-16' \n                                                         GROUP  BY product_id)) \n                 AS t2 \n              ON t1.product_id = t2.product_id \n",
         "explanation": "Each row of this table indicates that the price of some product was changed to a new price at some date. Initially, all products have price 10.",
-        "url": "https://leetcode.com/problems/missing-number-in-arithmetic-progression/"
+        "url": "https://leetcode.com/problems/product-price-at-a-given-date/"
     },
     {
         "assignment_id": 3,
@@ -503,7 +503,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(n)\n# Space: O(1)\n\nSELECT Round(100 * Sum(order_date = customer_pref_delivery_date) / Count(*), 2) \n       AS \n       immediate_percentage \nFROM   delivery;\n",
         "explanation": "Can you solve this real interview question? Immediate Food Delivery I - Level up your coding skills and quickly land a job. This is the best place to expand your knowledge and get prepared for your next interview.",
-        "url": "https://leetcode.com/problems/sales-analysis-ii/"
+        "url": "https://leetcode.com/problems/immediate-food-delivery-i/"
     },
     {
         "assignment_id": 3,
@@ -525,7 +525,7 @@
         "language": "MySQL",
         "solution_code": "# Time:  O(n)\n# Space: O(n)\n\nSELECT Date_format(trans_date, '%Y-%m')       AS month, \n       country, \n       Count(id)                              AS trans_count, \n       Count(IF(state = 'approved', 1, NULL)) AS approved_count, \n       SUM(amount)                            AS trans_total_amount, \n       SUM(IF(state = 'approved', amount, 0)) AS approved_total_amount \nFROM   transactions \nGROUP  BY Date_format(trans_date, '%Y-%m'), \n          country \nORDER BY NULL\n",
         "explanation": "The table has information about incoming transactions. Write an SQL query to find for each month and country, the number of transactions and their total amount ...",
-        "url": "https://leetcode.com/problems/game-play-analysis-v/"
+        "url": "https://leetcode.com/problems/monthly-transactions-i/"
     },
     {
         "assignment_id": 3,
@@ -536,7 +536,7 @@
         "language": "MySQL",
         "solution_code": "SELECT q1.person_name\nFROM Queue q1\nJOIN Queue q2 ON q1.turn >= q2.turn\nGROUP BY q1.turn, q1.person_name\nHAVING SUM(q2.weight) <= 1000\nORDER BY q1.turn DESC\nLIMIT 1;",
         "explanation": "turn determines the order of which the people will board the bus, where turn=1 denotes the first person to board and turn=n denotes the last person to board.",
-        "url": "https://leetcode.com/problems/new-users-daily-count/"
+        "url": "https://leetcode.com/problems/last-person-to-fit-in-the-bus/"
     },
     {
         "assignment_id": 3,
