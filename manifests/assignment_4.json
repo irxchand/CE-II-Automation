@@ -1,0 +1,26 @@
+[
+    {
+        "leetcode_id": "136",
+        "url": "https://leetcode.com/problems/single-number/",
+        "title": "Single Number",
+        "assignment_id": 4,
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "leetcode_id": "389",
+        "url": "https://leetcode.com/problems/find-the-difference/",
+        "title": "Find the Difference",
+        "assignment_id": 4,
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "leetcode_id": "258",
+        "url": "https://leetcode.com/problems/add-digits/",
+        "title": "Add Digits",
+        "assignment_id": 4,
+        "difficulty": "Easy",
+        "language": "Python"
+    }
+]

@@ -1,0 +1,23 @@
+[
+    {
+        "leetcode_id": "136",
+        "url": "https://leetcode.com/problems/single-number/",
+        "title": "Single Number",
+        "solution_code": "class Solution(object):\n    def singleNumber(self, nums):\n        res = 0\n        for n in nums: res ^= n\n        return res",
+        "difficulty": "Easy"
+    },
+    {
+        "leetcode_id": "389",
+        "url": "https://leetcode.com/problems/find-the-difference/",
+        "title": "Find the Difference",
+        "solution_code": "class Solution(object):\n    def findTheDifference(self, s, t):\n        res = 0\n        for c in s + t: res ^= ord(c)\n        return chr(res)",
+        "difficulty": "Easy"
+    },
+    {
+        "leetcode_id": "258",
+        "url": "https://leetcode.com/problems/add-digits/",
+        "title": "Add Digits",
+        "solution_code": "class Solution(object):\n    def addDigits(self, num):\n        if num == 0: return 0\n        return 1 + (num - 1) % 9",
+        "difficulty": "Easy"
+    }
+]

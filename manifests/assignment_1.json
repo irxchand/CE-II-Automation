@@ -1,0 +1,402 @@
+[
+    {
+        "assignment_id": 1,
+        "sequence_number": 1,
+        "leetcode_id": 1,
+        "title": "Two Sum",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 2,
+        "leetcode_id": 13,
+        "title": "Roman to Integer",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 3,
+        "leetcode_id": 14,
+        "title": "Longest Common Prefix",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 4,
+        "leetcode_id": 20,
+        "title": "Valid Parentheses",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 5,
+        "leetcode_id": 26,
+        "title": "Remove Duplicates from Sorted Array",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 6,
+        "leetcode_id": 27,
+        "title": "Remove Element",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 7,
+        "leetcode_id": 35,
+        "title": "Search Insert Position",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 8,
+        "leetcode_id": 58,
+        "title": "Length of Last Word",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 9,
+        "leetcode_id": 66,
+        "title": "Plus One",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 10,
+        "leetcode_id": 67,
+        "title": "Add Binary",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 11,
+        "leetcode_id": 69,
+        "title": "Sqrt(x)",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 12,
+        "leetcode_id": 70,
+        "title": "Climbing Stairs",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 13,
+        "leetcode_id": 118,
+        "title": "Pascal's Triangle",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 14,
+        "leetcode_id": 121,
+        "title": "Best Time to Buy and Sell Stock",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 15,
+        "leetcode_id": 125,
+        "title": "Valid Palindrome",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 16,
+        "leetcode_id": 169,
+        "title": "Majority Element",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 17,
+        "leetcode_id": 202,
+        "title": "Happy Number",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 18,
+        "leetcode_id": 217,
+        "title": "Contains Duplicate",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 19,
+        "leetcode_id": 242,
+        "title": "Valid Anagram",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 20,
+        "leetcode_id": 283,
+        "title": "Move Zeroes",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 21,
+        "leetcode_id": 2877,
+        "title": "Create a DataFrame from List",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 22,
+        "leetcode_id": 2878,
+        "title": "Get the Size of a DataFrame",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 23,
+        "leetcode_id": 2879,
+        "title": "Display the First Three Rows",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 24,
+        "leetcode_id": 2880,
+        "title": "Select Data",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 25,
+        "leetcode_id": 2881,
+        "title": "Create a New Column",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 26,
+        "leetcode_id": 2882,
+        "title": "Drop Duplicate Rows",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 27,
+        "leetcode_id": 2883,
+        "title": "Drop Missing Data",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 28,
+        "leetcode_id": 2884,
+        "title": "Modify Columns",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 29,
+        "leetcode_id": 2885,
+        "title": "Rename Columns",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 30,
+        "leetcode_id": 2886,
+        "title": "Change Data Type",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 31,
+        "leetcode_id": 2887,
+        "title": "Fill Missing Data",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 32,
+        "leetcode_id": 2888,
+        "title": "Reshape Data: Concatenate",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 33,
+        "leetcode_id": 2889,
+        "title": "Reshape Data: Pivot",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 34,
+        "leetcode_id": 2890,
+        "title": "Reshape Data: Melt",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 35,
+        "leetcode_id": 2891,
+        "title": "Method Chaining",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 36,
+        "leetcode_id": 175,
+        "title": "Combine Two Tables",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 37,
+        "leetcode_id": 577,
+        "title": "Employee Bonus",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 38,
+        "leetcode_id": 584,
+        "title": "Find Customer Referee",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 39,
+        "leetcode_id": 595,
+        "title": "Big Countries",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 40,
+        "leetcode_id": 1068,
+        "title": "Product Sales Analysis I",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 41,
+        "leetcode_id": 176,
+        "title": "Second Highest Salary",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 42,
+        "leetcode_id": 178,
+        "title": "Rank Scores",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 43,
+        "leetcode_id": 184,
+        "title": "Department Highest Salary",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 44,
+        "leetcode_id": 197,
+        "title": "Rising Temperature",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 45,
+        "leetcode_id": 511,
+        "title": "Game Play Analysis I",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 46,
+        "leetcode_id": 550,
+        "title": "Game Play Analysis IV",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 47,
+        "leetcode_id": 570,
+        "title": "Managers with at Least 5 Direct Reports",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 48,
+        "leetcode_id": 586,
+        "title": "Customer Placing the Largest Number of Orders",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 49,
+        "leetcode_id": 596,
+        "title": "Classes More Than 5 Students",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    },
+    {
+        "assignment_id": 1,
+        "sequence_number": 50,
+        "leetcode_id": 1179,
+        "title": "Reformat Department Table",
+        "difficulty": "Easy",
+        "language": "MySQL"
+    }
+]

@@ -1,0 +1,402 @@
+[
+    {
+        "assignment_id": 2,
+        "sequence_number": 1,
+        "leetcode_id": 21,
+        "title": "Merge Two Sorted Lists",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 2,
+        "leetcode_id": 83,
+        "title": "Remove Duplicates from Sorted List",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 3,
+        "leetcode_id": 141,
+        "title": "Linked List Cycle",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 4,
+        "leetcode_id": 160,
+        "title": "Intersection of Two Linked Lists",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 5,
+        "leetcode_id": 203,
+        "title": "Remove Linked List Elements",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 6,
+        "leetcode_id": 206,
+        "title": "Reverse Linked List",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 7,
+        "leetcode_id": 225,
+        "title": "Implement Stack using Queues",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 8,
+        "leetcode_id": 232,
+        "title": "Implement Queue using Stacks",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 9,
+        "leetcode_id": 234,
+        "title": "Palindrome Linked List",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 10,
+        "leetcode_id": 235,
+        "title": "Lowest Common Ancestor of a BST",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 11,
+        "leetcode_id": 237,
+        "title": "Delete Node in a Linked List",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 12,
+        "leetcode_id": 257,
+        "title": "Binary Tree Paths",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 13,
+        "leetcode_id": 303,
+        "title": "Range Sum Query \u2013 Immutable",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 14,
+        "leetcode_id": 346,
+        "title": "Moving Average from Data Stream",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 15,
+        "leetcode_id": 349,
+        "title": "Intersection of Two Arrays",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 16,
+        "leetcode_id": 404,
+        "title": "Sum of Left Leaves",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 17,
+        "leetcode_id": 429,
+        "title": "N-ary Tree Level Order Traversal",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 18,
+        "leetcode_id": 496,
+        "title": "Next Greater Element I",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 19,
+        "leetcode_id": 530,
+        "title": "Minimum Absolute Difference in BST",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 20,
+        "leetcode_id": 543,
+        "title": "Diameter of Binary Tree",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 21,
+        "leetcode_id": 559,
+        "title": "Maximum Depth of N-ary Tree",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 22,
+        "leetcode_id": 563,
+        "title": "Binary Tree Tilt",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 23,
+        "leetcode_id": 572,
+        "title": "Subtree of Another Tree",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 24,
+        "leetcode_id": 589,
+        "title": "N-ary Tree Preorder Traversal",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 25,
+        "leetcode_id": 590,
+        "title": "N-ary Tree Postorder Traversal",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 26,
+        "leetcode_id": 617,
+        "title": "Merge Two Binary Trees",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 27,
+        "leetcode_id": 637,
+        "title": "Average of Levels in Binary Tree",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 28,
+        "leetcode_id": 653,
+        "title": "Two Sum IV \u2013 Input is a BST",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 29,
+        "leetcode_id": 671,
+        "title": "Second Minimum Node in a Binary Tree",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 30,
+        "leetcode_id": 682,
+        "title": "Baseball Game",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 31,
+        "leetcode_id": 700,
+        "title": "Search in a Binary Search Tree",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 32,
+        "leetcode_id": 703,
+        "title": "Kth Largest Element in a Stream",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 33,
+        "leetcode_id": 705,
+        "title": "Design HashSet",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 34,
+        "leetcode_id": 706,
+        "title": "Design HashMap",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 35,
+        "leetcode_id": 724,
+        "title": "Find Pivot Index",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 36,
+        "leetcode_id": 733,
+        "title": "Flood Fill",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 37,
+        "leetcode_id": 844,
+        "title": "Backspace String Compare",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 38,
+        "leetcode_id": 872,
+        "title": "Leaf-Similar Trees",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 39,
+        "leetcode_id": 876,
+        "title": "Middle of the Linked List",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 40,
+        "leetcode_id": 897,
+        "title": "Increasing Order Search Tree",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 41,
+        "leetcode_id": 905,
+        "title": "Sort Array By Parity",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 42,
+        "leetcode_id": 933,
+        "title": "Number of Recent Calls",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 43,
+        "leetcode_id": 938,
+        "title": "Range Sum of BST",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 44,
+        "leetcode_id": 965,
+        "title": "Univalued Binary Tree",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 45,
+        "leetcode_id": 1022,
+        "title": "Sum of Root To Leaf Binary Numbers",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 46,
+        "leetcode_id": 86,
+        "title": "Partition List",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 47,
+        "leetcode_id": 143,
+        "title": "Reorder List",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 48,
+        "leetcode_id": 146,
+        "title": "LRU Cache",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 49,
+        "leetcode_id": 173,
+        "title": "Binary Search Tree Iterator",
+        "difficulty": "Easy",
+        "language": "Python"
+    },
+    {
+        "assignment_id": 2,
+        "sequence_number": 50,
+        "leetcode_id": 622,
+        "title": "Design Circular Queue",
+        "difficulty": "Easy",
+        "language": "Python"
+    }
+]
