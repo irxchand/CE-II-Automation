@@ -25,6 +25,13 @@ By automating navigation, execution, and documentation, this system ensures 100%
    ```bash
    pip install -r requirements.txt
    ```
+3. **Run the one-time setup** (enables auto-pull & notifies the repo owner):
+   ```bash
+   python setup.py
+   ```
+   This registers a background task that automatically pulls the latest code every minute — no manual steps needed after this.
+   
+   To remove auto-pull later: `python setup.py --uninstall`
 
 ## Usage 
 
