@@ -86,11 +86,16 @@ class ReportEngine:
             # Screenshot Row
             row_5 = table.rows[5].cells
             row_5[0].text = 'Accepted Submission Screenshot'
-            screenshot_path = os.path.join(self.screenshots_dir, f"assignment_{assignment_id}", f"{problem_id}.png")
+            possible_paths = [
+                os.path.join(self.screenshots_dir, f"assignment_{assignment_id}", f"{problem_id}.png"),
+                os.path.join("screenshots", f"assignment_{assignment_id}", f"{problem_id}.png"),
+                os.path.join(".local", "screenshots", f"assignment_{assignment_id}", f"{problem_id}.png"),
+            ]
+            screenshot_path = next((p for p in possible_paths if os.path.exists(p)), None)
             prob_state = prob_state_data.get("state", "")
             if problem_id in self.subscriber_ids or prob_state == "SUBSCRIBER_ONLY":
                 row_5[1].text = "SUBSCRIBER ONLY"
-            elif os.path.exists(screenshot_path):
+            elif screenshot_path:
                 paragraph = row_5[1].paragraphs[0]
                 run = paragraph.add_run()
                 run.add_picture(screenshot_path, width=Inches(4.5))
@@ -155,11 +160,16 @@ class ReportEngine:
             # Screenshot Row
             row_5 = table.rows[5].cells
             row_5[0].text = 'Accepted Submission Screenshot'
-            screenshot_path = os.path.join(self.screenshots_dir, f"assignment_{assignment_id}", f"{problem_id}.png")
+            possible_paths = [
+                os.path.join(self.screenshots_dir, f"assignment_{assignment_id}", f"{problem_id}.png"),
+                os.path.join("screenshots", f"assignment_{assignment_id}", f"{problem_id}.png"),
+                os.path.join(".local", "screenshots", f"assignment_{assignment_id}", f"{problem_id}.png"),
+            ]
+            screenshot_path = next((p for p in possible_paths if os.path.exists(p)), None)
             prob_state = prob_state_data.get("state", "")
             if problem_id in self.subscriber_ids or prob_state == "SUBSCRIBER_ONLY":
                 row_5[1].text = "SUBSCRIBER ONLY"
-            elif os.path.exists(screenshot_path):
+            elif screenshot_path:
                 paragraph = row_5[1].paragraphs[0]
                 run = paragraph.add_run()
                 run.add_picture(screenshot_path, width=Inches(4.5))

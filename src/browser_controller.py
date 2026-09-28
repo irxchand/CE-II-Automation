@@ -526,10 +526,10 @@ class BrowserController:
 
     def _wait_for_result(self, previous_url: str, assignment_id: str, problem_id: str) -> SubmissionResult:
         """Poll the submission page for a final verdict."""
-        # Wait for URL to change to /submissions/
-        for _ in range(15):
+        # Wait up to 10s for either URL change to /submissions/ or the submission result panel to appear
+        for _ in range(10):
             try:
-                if self.page.url != previous_url and "/submissions/" in self.page.url:
+                if ("/submissions/" in self.page.url) or self.page.ele('css:[data-e2e-locator="submission-result"]'):
                     break
             except PageDisconnectedError:
                 if not self._reconnect_if_needed():
@@ -540,29 +540,79 @@ class BrowserController:
         evaluating_indicators = (
             "Pending...", "Status: Evaluating", "Restrictions Check",
             "Judging", "Speed Up", "preparing runtime environment",
-            "running test cases", "Submitting",
+            "running test cases", "Submitting", "Evaluating",
         )
 
-        result_text = ""
-        # Ordered list to prioritize errors over "Accepted" (which might appear in sidebars)
-        verdict_keywords = [
-            "Wrong Answer", "Runtime Error", "Compile Error", 
+        known_verdicts = [
+            "Accepted", "Wrong Answer", "Runtime Error", "Compile Error", 
             "Time Limit Exceeded", "Memory Limit Exceeded", 
-            "Output Limit Exceeded", "Accepted"
+            "Output Limit Exceeded"
         ]
+
+        result_text = ""
 
         for _ in range(90):
             try:
+                # 1. Primary Strategy: Check dedicated LeetCode submission result element
+                result_ele = self.page.ele('css:[data-e2e-locator="submission-result"]')
+                if result_ele:
+                    ele_text = result_ele.text.strip()
+                    if ele_text:
+                        # If still evaluating, keep waiting
+                        if any(ind.lower() in ele_text.lower() for ind in evaluating_indicators):
+                            time.sleep(1)
+                            continue
+
+                        for verdict in known_verdicts:
+                            if verdict.lower() in ele_text.lower():
+                                result_text = verdict
+                                break
+                        if result_text:
+                            break
+                        if not any(ind.lower() in ele_text.lower() for ind in evaluating_indicators):
+                            result_text = ele_text
+                            break
+
+                # 2. Secondary Strategy: Check result container in submissions tab
+                container_ele = self.page.ele('css:div[class*="status-column"], div[class*="result-container"], div[class*="submission-detail"]')
+                if container_ele:
+                    ctext = container_ele.text.strip()
+                    if any(ind.lower() in ctext.lower() for ind in evaluating_indicators):
+                        time.sleep(1)
+                        continue
+                    for verdict in known_verdicts:
+                        if verdict.lower() in ctext.lower():
+                            result_text = verdict
+                            break
+                    if result_text:
+                        break
+
+                # 3. Explicit color-coded result elements
+                green_res = self.page.ele('css:[class*="text-green"], [class*="text-sd-success"]')
+                if green_res and "accepted" in green_res.text.lower():
+                    result_text = "Accepted"
+                    break
+
+                red_res = self.page.ele('css:[class*="text-red"], [class*="text-sd-destructive"]')
+                if red_res:
+                    r_text = red_res.text.strip()
+                    for v in known_verdicts[1:]:
+                        if v.lower() in r_text.lower():
+                            result_text = v
+                            break
+                    if result_text:
+                        break
+
+                # 4. Fallback: If on submissions URL, scan body text but check evaluating first
                 body = self.page.ele('tag:body')
                 page_text = body.text if body else ""
 
-                # Still evaluating? Skip verdict detection entirely.
                 if any(indicator in page_text for indicator in evaluating_indicators):
                     time.sleep(1)
                     continue
 
                 if "/submissions/" in self.page.url:
-                    for kw in verdict_keywords:
+                    for kw in known_verdicts:
                         if kw in page_text:
                             result_text = kw
                             break
@@ -590,17 +640,11 @@ class BrowserController:
             logger.info("Waiting 5 seconds for Accepted screen to fully render...")
             time.sleep(5)
             try:
-                # Verify we are still on the submissions/result page
-                if "/submissions/" not in self.page.url:
-                    logger.warning(f"Page navigated away from result (URL: {self.page.url}). Navigating back.")
-                    self.page.back()
-                    time.sleep(2)
-                
                 # Maximize window and take full page screenshot to prevent empty/cropped images
                 try:
                     self.page.set.window.max()
                     time.sleep(1)
-                except:
+                except Exception:
                     pass
                 self.page.get_screenshot(path=screenshot_path, full_page=True)
                 logger.info(f"[bold cyan]Screenshot captured:[/bold cyan] [cyan]{screenshot_path}[/cyan]")
