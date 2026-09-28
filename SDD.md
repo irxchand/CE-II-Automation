@@ -2,10 +2,9 @@
 ## Career Essentials LeetCode Assignment Automation
 
 ### 1. Document Control
-- **Author:** Antigravity Agent
+- **Author:** Ishaan Chand
 - **Date:** 2026-09-27
-- **Version:** 6.0 (Debugging Phase & Explanations Update)
-- **Status:** PENDING REVIEW
+- **Version:** 6.0 
 
 ### 2. Overview
 **Problem:** Students manually perform highly repetitive navigation, code insertion, execution, and documentation for 150 LeetCode problems, which is error-prone and time-consuming.
