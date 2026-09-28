@@ -718,6 +718,65 @@ class BrowserController:
         return True, screenshot_path
 
     # ------------------------------------------------------------------
+    # Mock Assessment (Assignment 4)
+    # ------------------------------------------------------------------
+
+    def open_mock_assessment(self) -> bool:
+        """
+        Navigates to https://leetcode.com/assessment/ and opens the first
+        assessment type ('Online Assessment') according to the rubrics.
+        """
+        url = "https://leetcode.com/assessment/"
+        logger.info(f"Navigating to LeetCode Assessment: {url}")
+        if not self._safe_navigate(url):
+            logger.error("Failed to navigate to https://leetcode.com/assessment/")
+            return False
+
+        time.sleep(3)
+        self._dismiss_popups()
+
+        try:
+            self.page.set.window.max()
+        except Exception:
+            pass
+
+        # Try to locate and click 'Online Assessment' (the first mock test type according to rubrics)
+        try:
+            oa_ele = self.page.ele('text:Online Assessment')
+            if oa_ele:
+                logger.info("Found 'Online Assessment' card. Clicking to open...")
+                oa_ele.click()
+                time.sleep(2)
+            else:
+                cards = self.page.eles('css:div[class*="assessment-card"], div[class*="card"], a[href*="/assessment/"]')
+                if cards:
+                    logger.info("Clicking the first assessment card...")
+                    cards[0].click()
+                    time.sleep(2)
+        except Exception as e:
+            logger.warning(f"Could not auto-click 'Online Assessment' card: {e}")
+
+        return True
+
+    def capture_mock_assessment_screenshot(self, problem_index: str = "1") -> Optional[str]:
+        """Capture screenshot of the mock assessment problem / submission."""
+        screenshot_dir = os.path.abspath(os.path.join(self.screenshots_dir, "assignment_4"))
+        os.makedirs(screenshot_dir, exist_ok=True)
+        screenshot_path = os.path.join(screenshot_dir, f"{problem_index}.png").replace('\\', '/')
+        try:
+            self.page.set.window.max()
+            time.sleep(1)
+        except Exception:
+            pass
+        try:
+            self.page.get_screenshot(path=screenshot_path, full_page=True)
+            logger.info(f"[bold cyan]Mock Test screenshot captured:[/bold cyan] [cyan]{screenshot_path}[/cyan]")
+            return screenshot_path
+        except Exception as e:
+            logger.error(f"Failed to capture mock assessment screenshot: {e}")
+            return None
+
+    # ------------------------------------------------------------------
     # Cleanup
     # ------------------------------------------------------------------
 

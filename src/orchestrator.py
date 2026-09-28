@@ -179,5 +179,80 @@ class Orchestrator:
         return True
 
     def run_mock_test(self):
-        logger.info("Starting Mock Test workflow (Assignment 4).")
-        return self.run_assignment("4")
+        logger.info("Starting Mock Test workflow (Assignment 4) at https://leetcode.com/assessment/")
+
+        # Initialize Browser and Auth
+        self.browser_controller.initialize()
+        auth_success = self.browser_controller.interactive_login(self.expected_username)
+
+        if not auth_success:
+            logger.error("Authentication failed or username mismatched. Aborting mock test.")
+            self.browser_controller.close()
+            return False
+
+        logger.info("Navigating to LeetCode Assessment (https://leetcode.com/assessment/)...")
+        # Navigate to assessment and select the first assessment (Online Assessment) according to the rubrics
+        self.browser_controller.open_mock_assessment()
+
+        self.console.print("\n[bold cyan]" + "═" * 70 + "[/bold cyan]")
+        self.console.print("[bold magenta]LeetCode Mock Assessment (Assignment 4) - Online Assessment[/bold magenta]")
+        self.console.print("[bold cyan]" + "═" * 70 + "[/bold cyan]")
+        self.console.print("Target: [bold green]https://leetcode.com/assessment/[/bold green] (Online Assessment)\n")
+        self.console.print("[bold]Interactive Controls:[/bold]")
+        self.console.print("  • Press [bold green]Enter[/bold green] to verify and capture 'Accepted' screenshot for current problem")
+        self.console.print("  • Type [bold cyan]'snap <number/name>'[/bold cyan] (e.g. snap 1, snap 2, snap summary) to capture the screen")
+        self.console.print("  • Type [bold yellow]'auto'[/bold yellow] to run automated solution injection for Assignment 4 questions")
+        self.console.print("  • Type [bold magenta]'done'[/bold magenta] or [bold magenta]'exit'[/bold magenta] when finished to generate the Mock Test report\n")
+
+        current_prob = 1
+        while True:
+            cmd = Prompt.ask(f"[bold cyan]Mock Test (Problem {current_prob}) >[/bold cyan]", default="")
+            cmd_clean = cmd.strip().lower()
+
+            if cmd_clean in ("done", "exit", "quit"):
+                logger.info("Finishing Mock Test and generating report...")
+                break
+
+            elif cmd_clean.startswith("snap ") or cmd_clean.startswith("capture "):
+                parts = cmd.strip().split(maxsplit=1)
+                name = parts[1] if len(parts) > 1 else str(current_prob)
+                screenshot_path = self.browser_controller.capture_mock_assessment_screenshot(name)
+                if screenshot_path:
+                    self.console.print(f"[bold green]✔ Screenshot saved:[/bold green] {screenshot_path}")
+                    self.state_manager.update_problem_state("4", name, "COMPLETED")
+                    if name.isdigit() and int(name) == current_prob:
+                        current_prob += 1
+
+            elif cmd_clean == "auto":
+                self.console.print("[bold yellow]Running automated submission for Assignment 4 questions...[/bold yellow]")
+                self.browser_controller.close()
+                return self.run_assignment("4")
+
+            else:
+                logger.info(f"Verifying manual submission for Problem {current_prob}...")
+                verified, screenshot_path = self.browser_controller.verify_manual_submission("4", str(current_prob))
+                if verified and screenshot_path:
+                    self.console.print(f"[bold green]✔ Problem {current_prob} verified: Accepted! Screenshot saved:[/bold green] {screenshot_path}")
+                    self.state_manager.update_problem_state("4", str(current_prob), "COMPLETED")
+                    current_prob += 1
+                else:
+                    self.console.print("[bold yellow]Verification could not find green 'Accepted' on the screen.[/bold yellow]")
+                    snap_anyway = Prompt.ask("Take full-page screenshot anyway? [y/N]", default="n")
+                    if snap_anyway.strip().lower() == "y":
+                        screenshot_path = self.browser_controller.capture_mock_assessment_screenshot(str(current_prob))
+                        if screenshot_path:
+                            self.console.print(f"[bold green]✔ Screenshot saved:[/bold green] {screenshot_path}")
+                            self.state_manager.update_problem_state("4", str(current_prob), "COMPLETED")
+                            current_prob += 1
+
+        self.browser_controller.close()
+
+        # Generate report
+        try:
+            report_path = self.report_engine.generate_mock_test_report()
+            if report_path:
+                self.console.print(f"\n[bold green]✔ Mock Test report generated at:[/bold green] {report_path}")
+        except Exception as e:
+            logger.error(f"Error generating Mock Test report: {e}")
+
+        return True
