@@ -40,12 +40,12 @@ class EditorAdapter:
         Returns True only when read-back verification succeeds.
         """
         # ----- Strategy 1: Monaco model API -----
-        if self._try_monaco_model(code):
-            return "READY"
+        if self._try_monaco_model(code) == True:
+            return True
 
         # ----- Strategy 2: CDP Input.insertText -----
-        if self._try_cdp_insert(code):
-            return "READY"
+        if self._try_cdp_insert(code) == True:
+            return True
 
         # ----- Strategy 3: Controlled page recovery (single reload) -----
         logger.warning("Both editor strategies failed. Performing controlled page reload...")
@@ -54,18 +54,18 @@ class EditorAdapter:
             self._wait_for_editor_ready()
         except Exception as e:
             logger.error(f"Page reload failed: {e}")
-            return "TIMEOUT"
+            return False
 
         # Retry strategy 1 after reload
-        if self._try_monaco_model(code):
-            return "READY"
+        if self._try_monaco_model(code) == True:
+            return True
 
         # Retry strategy 2 after reload
-        if self._try_cdp_insert(code):
-            return "READY"
+        if self._try_cdp_insert(code) == True:
+            return True
 
         logger.error("All editor injection strategies exhausted.")
-        return "TIMEOUT"
+        return False
 
     # ------------------------------------------------------------------
     # Strategy 1: Monaco model.setValue / getValue
@@ -80,7 +80,7 @@ class EditorAdapter:
         )
         if not has_monaco:
             logger.info("Monaco global not available. Skipping strategy 1.")
-            return "TIMEOUT"
+            return False
 
         logger.debug("Editor detected: Monaco")
 
@@ -90,7 +90,7 @@ class EditorAdapter:
         )
         if not has_model:
             logger.warning("No Monaco editor models found.")
-            return "TIMEOUT"
+            return False
 
         logger.debug("Editor model detected")
 
@@ -100,17 +100,32 @@ class EditorAdapter:
         encoded = base64.b64encode(code.encode('utf-8')).decode('utf-8')
         logger.debug("Writing solution through Monaco model (model.setValue)")
         self.page.run_js(f"""
-            const model = monaco.editor.getModels()[0];
+            const models = monaco.editor.getModels();
+            let targetModel = models[0];
+            for (let m of models) {{
+                if (m.uri && (m.uri.toString().includes('solution') || m.uri.toString().includes('snippet'))) {{
+                    targetModel = m;
+                    break;
+                }}
+            }}
             const decoded = decodeURIComponent(escape(atob('{encoded}')));
-            model.setValue(decoded);
+            targetModel.setValue(decoded);
         """)
 
         time.sleep(0.5)  # Brief stabilisation
 
         # Read back through Monaco model — independent path from setValue
-        readback = self.page.run_js(
-            "return monaco.editor.getModels()[0].getValue();"
-        )
+        readback = self.page.run_js("""
+            const models = monaco.editor.getModels();
+            let targetModel = models[0];
+            for (let m of models) {{
+                if (m.uri && (m.uri.toString().includes('solution') || m.uri.toString().includes('snippet'))) {{
+                    targetModel = m;
+                    break;
+                }}
+            }}
+            return targetModel.getValue();
+        """)
         readback = readback or ""
 
         logger.debug(f"Editor read-back length: {len(readback)}")
@@ -131,7 +146,7 @@ class EditorAdapter:
         """)
         if not focused:
             logger.warning("Could not focus editor textarea for CDP insert.")
-            return "TIMEOUT"
+            return False
 
         time.sleep(0.3)
 
@@ -208,12 +223,12 @@ class EditorAdapter:
         """
         if not actual or len(actual.strip()) < 5:
             logger.warning("Verification FAILED — editor is empty or near-empty")
-            return "TIMEOUT"
+            return False
 
         # Check for class Solution
         if "class Solution" in expected and "class Solution" not in actual:
             logger.warning("Verification FAILED — 'class Solution' missing from editor")
-            return "TIMEOUT"
+            return False
 
         # Check for the expected method name (first def after class Solution)
         import re
@@ -222,7 +237,7 @@ class EditorAdapter:
             method_name = method_match.group(1)
             if method_name not in actual:
                 logger.warning(f"Verification FAILED — method '{method_name}' missing from editor")
-                return "TIMEOUT"
+                return False
 
         # Normalised length comparison (allow ±20% for whitespace differences)
         norm_expected = ' '.join(expected.split())
@@ -230,10 +245,10 @@ class EditorAdapter:
         ratio = len(norm_actual) / max(len(norm_expected), 1)
         if ratio < 0.5:
             logger.warning(f"Verification FAILED — content too short (ratio={ratio:.2f})")
-            return "TIMEOUT"
+            return False
 
         logger.debug("Editor verification: SUCCESS")
-        return "READY"
+        return True
 
     # ------------------------------------------------------------------
     # Readiness detection
