@@ -1,0 +1,6 @@
+rich
+python-docx
+DrissionPage
+pydantic
+python-dotenv
+requests
