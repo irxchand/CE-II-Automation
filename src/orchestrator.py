@@ -1,11 +1,13 @@
 import re
 import time
 import os
+import json
 from src.config import MAX_RETRIES, LEETCODE_BASE_URL
 from src.logger import logger
 from src.state_manager import StateManager
 from src.browser_controller import BrowserController
 from src.report_engine import ReportEngine
+from src.solution_finder import SolutionFinder
 from DrissionPage.errors import PageDisconnectedError
 from rich.console import Console
 from rich.prompt import Prompt
@@ -15,9 +17,11 @@ class Orchestrator:
     def __init__(self, expected_username: str, prn: str, manifests_dir: str = "solutions_manifests", screenshots_dir: str = "screenshots", reports_dir: str = "assignments"):
         self.expected_username = expected_username
         self.prn = prn
+        self.manifests_dir = manifests_dir
         self.state_manager = StateManager(manifests_dir)
         self.browser_controller = BrowserController(screenshots_dir=screenshots_dir)
         self.report_engine = ReportEngine(prn=prn, manifests_dir=manifests_dir, screenshots_dir=screenshots_dir, reports_dir=reports_dir)
+        self.solution_finder = SolutionFinder(manifests_dir=manifests_dir)
         self.console = Console()
 
     def run_assignment(self, assignment_id: str):
@@ -178,6 +182,173 @@ class Orchestrator:
 
         return True
 
+    def _record_mock_problem(self, prob_index: int, prob_info: dict, solution_code: str = ""):
+        """Record problem metadata to mock_assessment_manifest.json for accurate docx generation."""
+        mock_manifest_path = os.path.join(".local", "mock_assessment_manifest.json")
+        data = []
+        if os.path.exists(mock_manifest_path):
+            try:
+                with open(mock_manifest_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+            except Exception:
+                data = []
+
+        entry = {
+            "leetcode_id": str(prob_info.get("problem_id") or prob_index),
+            "title": prob_info.get("clean_title") or prob_info.get("title") or f"Problem {prob_index}",
+            "difficulty": prob_info.get("difficulty", "Medium"),
+            "solution_code": solution_code,
+            "assignment_id": 4
+        }
+
+        updated = False
+        for i, item in enumerate(data):
+            if str(item.get("leetcode_id")) == entry["leetcode_id"] or i == (prob_index - 1):
+                data[i] = entry
+                updated = True
+                break
+        if not updated:
+            data.append(entry)
+
+        try:
+            with open(mock_manifest_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=4)
+        except Exception as e:
+            logger.warning(f"Could not write mock_assessment_manifest: {e}")
+
+    def _handle_ai_fallback(self, current_prob: int, prob_info: dict, error_msg: str = "") -> bool:
+        """Display problem prompt to copy/paste into an external AI (ChatGPT/Gemini/Claude) and handle response."""
+        title = prob_info.get("clean_title") or prob_info.get("title") or f"Problem {current_prob}"
+        pid = prob_info.get("problem_id")
+        desc = prob_info.get("description", "")
+        starter = prob_info.get("starter_code", "")
+
+        self.console.print("\n[bold yellow]" + "═" * 72 + "[/bold yellow]")
+        self.console.print("[bold yellow]║                    AI SOLVER PROMPT (COPY & PASTE)                    ║[/bold yellow]")
+        self.console.print("[bold yellow]" + "═" * 72 + "[/bold yellow]\n")
+
+        prompt_lines = [
+            "Please solve this LeetCode problem in Python (Python 3):",
+            "",
+            f"Problem: {f'#{pid} ' if pid else ''}{title}"
+        ]
+        if error_msg:
+            prompt_lines.append(f"Previous attempt verdict/error: {error_msg}")
+        if starter:
+            prompt_lines.append(f"\nStarter Code:\n{starter}")
+        if desc:
+            desc_snippet = desc[:800] + ("..." if len(desc) > 800 else "")
+            prompt_lines.append(f"\nDescription:\n{desc_snippet}")
+
+        prompt_lines.append("\nRequirements:")
+        prompt_lines.append("- Provide ONLY the working Python Solution code inside ```python ``` block.")
+        prompt_lines.append("- Keep the exact class and method name from the starter code.")
+
+        full_prompt = "\n".join(prompt_lines)
+        self.console.print(full_prompt, style="cyan")
+        self.console.print("\n[bold yellow]" + "═" * 72 + "[/bold yellow]")
+        self.console.print("[bold]Copy the prompt above and paste it into ChatGPT, Claude, or Gemini.[/bold]\n")
+
+        self.console.print("[bold]Action Options:[/bold]")
+        self.console.print("  [bold cyan]1[/bold cyan] or [bold cyan]'paste'[/bold cyan] - Paste the AI solution code to auto-inject & submit")
+        self.console.print("  [bold cyan]2[/bold cyan] or [bold cyan]'verify'[/bold cyan] - You edited the code directly in Chrome; verify verdict")
+        self.console.print("  [bold cyan]3[/bold cyan] or [bold cyan]'snap'[/bold cyan] - Capture screenshot as-is")
+        self.console.print("  [bold cyan]4[/bold cyan] or [bold cyan]'skip'[/bold cyan] - Skip to next problem\n")
+
+        choice = Prompt.ask("[bold cyan]Select an option [1/2/3/4][/bold cyan]", default="1").strip().lower()
+
+        if choice in ("1", "paste", "p"):
+            self.console.print("\n[yellow]Paste your Python code below. Type 'END' on a new line when finished:[/yellow]")
+            lines = []
+            while True:
+                try:
+                    line = input()
+                    if line.strip() == "END":
+                        break
+                    lines.append(line)
+                except EOFError:
+                    break
+            code = "\n".join(lines).strip()
+            if not code:
+                self.console.print("[red]No code provided.[/red]")
+                return False
+
+            clean_code = self.solution_finder._clean_code(code)
+            self.console.print("[dim]Injecting code into editor and submitting...[/dim]")
+            accepted, verdict, screenshot_path = self.browser_controller.submit_mock_assessment_solution(clean_code, str(current_prob))
+            if accepted:
+                self.console.print(f"\n[bold green]✔ Problem {current_prob} verified: Accepted! Screenshot saved:[/bold green] {screenshot_path}\n")
+                self.state_manager.update_problem_state("4", str(current_prob), "COMPLETED")
+                self._record_mock_problem(current_prob, prob_info, clean_code)
+                return True
+            else:
+                self.console.print(f"[bold red]Submission verdict: {verdict}[/bold red]")
+                return False
+
+        elif choice in ("2", "verify", "v"):
+            verified, screenshot_path = self.browser_controller.verify_manual_submission("4", str(current_prob))
+            if verified and screenshot_path:
+                self.console.print(f"[bold green]✔ Problem {current_prob} verified: Accepted! Screenshot saved:[/bold green] {screenshot_path}")
+                self.state_manager.update_problem_state("4", str(current_prob), "COMPLETED")
+                self._record_mock_problem(current_prob, prob_info, "")
+                return True
+            else:
+                self.console.print("[bold yellow]Verification could not find green 'Accepted' on the screen.[/bold yellow]")
+                return False
+
+        elif choice in ("3", "snap", "s"):
+            screenshot_path = self.browser_controller.capture_mock_assessment_screenshot(str(current_prob))
+            if screenshot_path:
+                self.console.print(f"[bold green]✔ Screenshot saved:[/bold green] {screenshot_path}")
+                self.state_manager.update_problem_state("4", str(current_prob), "COMPLETED")
+                self._record_mock_problem(current_prob, prob_info, "")
+                return True
+            return False
+
+        else:
+            self.console.print(f"[yellow]Skipping Problem {current_prob}.[/yellow]")
+            return False
+
+    def _solve_mock_problem(self, current_prob: int) -> bool:
+        """Automatically detect current question, search internet for best solution, inject and submit."""
+        self.console.print(f"\n[bold cyan]─── Analyzing Problem {current_prob} on screen ───[/bold cyan]")
+        prob_info = self.browser_controller.get_mock_assessment_problem()
+        title = prob_info.get("title", "")
+        pid = prob_info.get("problem_id")
+        clean_title = prob_info.get("clean_title") or title
+
+        if title:
+            self.console.print(f"[bold]Detected Problem:[/bold] {f'#{pid} ' if pid else ''}[cyan]{clean_title}[/cyan]")
+        else:
+            self.console.print("[yellow]Could not auto-detect problem title from browser page.[/yellow]")
+            user_title = Prompt.ask("[bold]Enter Problem Title or LeetCode Number (or 'skip'):[/bold]", default="").strip()
+            if not user_title or user_title.lower() == "skip":
+                self.console.print("[yellow]Skipping problem.[/yellow]")
+                return False
+            clean_title, pid = self.solution_finder._parse_title_and_id(user_title, None)
+            prob_info["title"] = user_title
+            prob_info["clean_title"] = clean_title
+            prob_info["problem_id"] = pid
+
+        self.console.print(f"[dim]Searching online solution for '{clean_title}'...[/dim]")
+        solution_code, source = self.solution_finder.find_solution(clean_title, pid)
+
+        if solution_code:
+            self.console.print(f"[bold green]✔ Solution found from {source}[/bold green]")
+            self.console.print("[dim]Injecting code into Monaco editor and submitting...[/dim]")
+            accepted, verdict, screenshot_path = self.browser_controller.submit_mock_assessment_solution(solution_code, str(current_prob))
+            if accepted:
+                self.console.print(f"\n[bold green]✔ Problem {current_prob} ACCEPTED! Screenshot saved: {screenshot_path}[/bold green]\n")
+                self.state_manager.update_problem_state("4", str(current_prob), "COMPLETED")
+                self._record_mock_problem(current_prob, prob_info, solution_code)
+                return True
+            else:
+                self.console.print(f"\n[bold red]✖ Submission Verdict: {verdict}[/bold red]")
+                return self._handle_ai_fallback(current_prob, prob_info, error_msg=verdict)
+        else:
+            self.console.print("[bold yellow]No ready solution found online.[/bold yellow]")
+            return self._handle_ai_fallback(current_prob, prob_info, error_msg="Solution not found online")
+
     def run_mock_test(self):
         logger.info("Starting Mock Test workflow (Assignment 4) at https://leetcode.com/assessment/")
 
@@ -191,22 +362,22 @@ class Orchestrator:
             return False
 
         logger.info("Navigating to LeetCode Assessment (https://leetcode.com/assessment/)...")
-        # Navigate to assessment and select the first assessment (Online Assessment) according to the rubrics
         self.browser_controller.open_mock_assessment()
 
-        self.console.print("\n[bold cyan]" + "═" * 70 + "[/bold cyan]")
-        self.console.print("[bold magenta]LeetCode Mock Assessment (Assignment 4) - Online Assessment[/bold magenta]")
-        self.console.print("[bold cyan]" + "═" * 70 + "[/bold cyan]")
-        self.console.print("Target: [bold green]https://leetcode.com/assessment/[/bold green] (Online Assessment)\n")
+        self.console.print("\n[bold cyan]" + "═" * 72 + "[/bold cyan]")
+        self.console.print("[bold magenta]LeetCode Mock Assessment (Assignment 4) - Automated Solver[/bold magenta]")
+        self.console.print("[bold cyan]" + "═" * 72 + "[/bold cyan]")
+        self.console.print("Target: [bold green]https://leetcode.com/assessment/[/bold green]\n")
         self.console.print("[bold]Interactive Controls:[/bold]")
-        self.console.print("  • Press [bold green]Enter[/bold green] to verify and capture 'Accepted' screenshot for current problem")
-        self.console.print("  • Type [bold cyan]'snap <number/name>'[/bold cyan] (e.g. snap 1, snap 2, snap summary) to capture the screen")
-        self.console.print("  • Type [bold yellow]'auto'[/bold yellow] to run automated solution injection for Assignment 4 questions")
+        self.console.print("  • Press [bold green]Enter[/bold green] or type [bold green]'solve'[/bold green] to auto-search internet, inject solution & submit")
+        self.console.print("  • Type [bold yellow]'auto'[/bold yellow] to automatically solve all problems in the assessment")
+        self.console.print("  • Type [bold cyan]'snap <number/name>'[/bold cyan] (e.g. snap 1, snap 2) to capture current screen")
+        self.console.print("  • Type [bold blue]'paste'[/bold blue] to paste your own solution into the editor")
         self.console.print("  • Type [bold magenta]'done'[/bold magenta] or [bold magenta]'exit'[/bold magenta] when finished to generate the Mock Test report\n")
 
         current_prob = 1
         while True:
-            cmd = Prompt.ask(f"[bold cyan]Mock Test (Problem {current_prob}) >[/bold cyan]", default="")
+            cmd = Prompt.ask(f"[bold cyan]Mock Test (Problem {current_prob}) >[/bold cyan]", default="solve")
             cmd_clean = cmd.strip().lower()
 
             if cmd_clean in ("done", "exit", "quit"):
@@ -224,26 +395,34 @@ class Orchestrator:
                         current_prob += 1
 
             elif cmd_clean == "auto":
-                self.console.print("[bold yellow]Running automated submission for Assignment 4 questions...[/bold yellow]")
-                self.browser_controller.close()
-                return self.run_assignment("4")
+                self.console.print("[bold yellow]Starting automated solver for all mock assessment questions...[/bold yellow]")
+                for p_idx in range(current_prob, 5):
+                    self.browser_controller.select_mock_problem_tab(p_idx)
+                    time.sleep(2)
+                    solved = self._solve_mock_problem(p_idx)
+                    if solved:
+                        current_prob = p_idx + 1
+                    else:
+                        cont = Prompt.ask(f"Problem {p_idx} not solved automatically. Continue to next problem? [Y/n]", default="y")
+                        if cont.strip().lower() == "n":
+                            break
+                        current_prob = p_idx + 1
 
-            else:
-                logger.info(f"Verifying manual submission for Problem {current_prob}...")
-                verified, screenshot_path = self.browser_controller.verify_manual_submission("4", str(current_prob))
-                if verified and screenshot_path:
-                    self.console.print(f"[bold green]✔ Problem {current_prob} verified: Accepted! Screenshot saved:[/bold green] {screenshot_path}")
-                    self.state_manager.update_problem_state("4", str(current_prob), "COMPLETED")
+            elif cmd_clean in ("paste", "p"):
+                prob_info = self.browser_controller.get_mock_assessment_problem()
+                solved = self._handle_ai_fallback(current_prob, prob_info)
+                if solved:
+                    current_prob += 1
+
+            elif cmd_clean in ("solve", ""):
+                solved = self._solve_mock_problem(current_prob)
+                if solved:
                     current_prob += 1
                 else:
-                    self.console.print("[bold yellow]Verification could not find green 'Accepted' on the screen.[/bold yellow]")
-                    snap_anyway = Prompt.ask("Take full-page screenshot anyway? [y/N]", default="n")
-                    if snap_anyway.strip().lower() == "y":
-                        screenshot_path = self.browser_controller.capture_mock_assessment_screenshot(str(current_prob))
-                        if screenshot_path:
-                            self.console.print(f"[bold green]✔ Screenshot saved:[/bold green] {screenshot_path}")
-                            self.state_manager.update_problem_state("4", str(current_prob), "COMPLETED")
-                            current_prob += 1
+                    self.console.print(f"[yellow]Problem {current_prob} was not completed.[/yellow]")
+
+            else:
+                self.console.print(f"[yellow]Unknown command '{cmd}'. Type 'solve', 'auto', 'snap', 'paste', or 'done'.[/yellow]")
 
         self.browser_controller.close()
 

@@ -15,7 +15,9 @@ def get_logger(name: str = "automation"):
         logger.addHandler(file_handler)
         
         # Console handler with Rich
-        console_handler = RichHandler(rich_tracebacks=True, markup=True)
+        from rich.console import Console
+        console = Console(highlight=False, legacy_windows=False)
+        console_handler = RichHandler(console=console, rich_tracebacks=True, markup=True)
         console_handler.setFormatter(formatter)
         logger.addHandler(console_handler)
         

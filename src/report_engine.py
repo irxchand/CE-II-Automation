@@ -113,11 +113,24 @@ class ReportEngine:
     def generate_mock_test_report(self) -> str:
         logger.info(f"Generating Mock Test report...")
         assignment_id = "4"
-        try:
-            data = self.state_manager.load_manifest(assignment_id)
-        except Exception as e:
-            logger.error(f"Cannot load manifest for Mock Test: {e}")
+        mock_manifest_path = os.path.join(".local", "mock_assessment_manifest.json")
+        if os.path.exists(mock_manifest_path):
+            try:
+                with open(mock_manifest_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                logger.info(f"Loaded {len(data)} problems from mock_assessment_manifest.json")
+            except Exception as e:
+                logger.warning(f"Failed to read mock_assessment_manifest.json: {e}")
+                data = []
+        else:
             data = []
+
+        if not data:
+            try:
+                data = self.state_manager.load_manifest(assignment_id)
+            except Exception as e:
+                logger.error(f"Cannot load manifest for Mock Test: {e}")
+                data = []
 
         doc = Document()
         doc.add_heading(f'Mock Test (Assignment 4) - PRN: {self.prn}', 0)

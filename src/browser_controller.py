@@ -1,9 +1,10 @@
 import os
+import re
 import time
 from DrissionPage import ChromiumPage, ChromiumOptions
 from DrissionPage.errors import PageDisconnectedError
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, Tuple, Dict, Any
 from src.logger import logger
 
 
@@ -775,6 +776,227 @@ class BrowserController:
         except Exception as e:
             logger.error(f"Failed to capture mock assessment screenshot: {e}")
             return None
+
+    def get_mock_assessment_problem(self) -> Dict[str, Any]:
+        """
+        Extract problem title, problem id, description, and starter code from the active assessment page.
+        """
+        data = {
+            "title": "",
+            "clean_title": "",
+            "problem_id": None,
+            "description": "",
+            "starter_code": ""
+        }
+        if not self.page:
+            return data
+
+        # 1. Title Extraction
+        title_candidates = [
+            'css:div[data-cy="question-title"]',
+            'css:div[class*="text-title"]',
+            'css:div[class*="question-title"]',
+            'css:h4',
+            'css:div.title',
+            'css:a[class*="title"]',
+            'css:[data-track-load="description_content"] h4',
+        ]
+        for sel in title_candidates:
+            try:
+                el = self.page.ele(sel)
+                if el and el.text and el.text.strip():
+                    data["title"] = el.text.strip()
+                    break
+            except Exception:
+                continue
+
+        # If not found via elements, try document title
+        if not data["title"]:
+            try:
+                doc_title = self.page.title or ""
+                clean_doc = re.sub(r'\s*-\s*(LeetCode|Assessment|Mock Test).*$', '', doc_title, flags=re.IGNORECASE).strip()
+                if clean_doc and clean_doc.lower() != "assessment":
+                    data["title"] = clean_doc
+            except Exception:
+                pass
+
+        # 2. Extract Problem ID and clean title
+        if data["title"]:
+            m = re.match(r'^(?:problem\s*)?#?(\d+)[\.\:\-\s]+(.+)$', data["title"], re.IGNORECASE)
+            if m:
+                data["problem_id"] = m.group(1)
+                data["clean_title"] = m.group(2).strip()
+            else:
+                data["clean_title"] = data["title"]
+        else:
+            data["clean_title"] = ""
+
+        # 3. Description Extraction
+        desc_candidates = [
+            'css:div[data-track-load="description_content"]',
+            'css:div[class*="question-content"]',
+            'css:div[class*="content__"]',
+            'css:div[class*="description"]',
+            'css:div[data-cy="question-detail-main-tabs"]'
+        ]
+        for sel in desc_candidates:
+            try:
+                el = self.page.ele(sel)
+                if el and el.text and el.text.strip():
+                    data["description"] = el.text.strip()
+                    break
+            except Exception:
+                continue
+
+        # 4. Starter Code from Monaco
+        try:
+            starter = self.page.run_js("""
+                if (typeof monaco !== 'undefined' && monaco.editor) {
+                    const models = monaco.editor.getModels();
+                    for (let m of models) {
+                        if (m.uri && (m.uri.toString().includes('solution') || m.uri.toString().includes('snippet'))) {
+                            return m.getValue();
+                        }
+                    }
+                    if (models.length > 0) return models[0].getValue();
+                }
+                return '';
+            """)
+            data["starter_code"] = (starter or "").strip()
+        except Exception:
+            data["starter_code"] = ""
+
+        return data
+
+    def submit_mock_assessment_solution(self, code: str, problem_name: str = "1") -> Tuple[bool, str, Optional[str]]:
+        """
+        Inject solution into editor, click Submit, wait for verdict, and capture screenshot if Accepted.
+        Returns: (is_accepted, verdict, screenshot_path)
+        """
+        if not self.page:
+            return False, "Browser not open", None
+
+        # Ensure editor is ready
+        editor_status = self._editor_adapter._wait_for_editor_ready(timeout=20)
+        if editor_status != "READY":
+            logger.warning("Editor not reported ready, attempting injection anyway...")
+
+        # Inject code
+        ok = self._editor_adapter.set_editor_code(code)
+        if not ok:
+            logger.error("Failed to inject code into Monaco editor")
+            return False, "Injection failed", None
+
+        time.sleep(1)
+
+        # Dismiss popups / modals
+        self._dismiss_popups()
+
+        # Find submit button
+        submit_btn = None
+        submit_selectors = [
+            'css:[data-e2e-locator="console-submit-button"]',
+            'css:button[data-cy="submit-code-btn"]',
+            'text:Submit',
+            'css:button:has-text("Submit")',
+            'css:button[class*="submit"]'
+        ]
+        for sel in submit_selectors:
+            try:
+                btn = self.page.ele(sel)
+                if btn:
+                    submit_btn = btn
+                    break
+            except Exception:
+                continue
+
+        if not submit_btn:
+            logger.error("Submit button not found on assessment page")
+            return False, "Submit button not found", None
+
+        try:
+            submit_btn.click(by_js=True)
+            logger.info("Clicked Submit button. Waiting for evaluation...")
+        except Exception as e:
+            logger.error(f"Error clicking submit button: {e}")
+            return False, f"Click failed: {e}", None
+
+        # Wait for evaluation verdict
+        evaluating_indicators = [
+            "pending", "evaluating", "restrictions check", "judging",
+            "speed up", "preparing runtime", "running test cases", "submitting"
+        ]
+        known_verdicts = [
+            "accepted", "wrong answer", "runtime error", "compile error",
+            "time limit exceeded", "memory limit exceeded", "output limit exceeded"
+        ]
+
+        verdict = ""
+        for _ in range(60):
+            time.sleep(1)
+            try:
+                # Check dedicated submission result element
+                res_el = self.page.ele('css:[data-e2e-locator="submission-result"]')
+                text = res_el.text.strip().lower() if res_el else ""
+
+                if not text:
+                    # Alternative result container
+                    container = self.page.ele('css:div[class*="status-column"], div[class*="submission-detail"], div[class*="result-container"]')
+                    text = container.text.strip().lower() if container else ""
+
+                if not text:
+                    continue
+
+                if any(ind in text for ind in evaluating_indicators):
+                    continue
+
+                for v in known_verdicts:
+                    if v in text:
+                        verdict = v.title()
+                        break
+
+                if verdict:
+                    break
+
+                if "accepted" in text:
+                    verdict = "Accepted"
+                    break
+            except Exception:
+                pass
+
+        if not verdict:
+            verdict = "Unknown"
+
+        logger.info(f"Submission verdict: {verdict}")
+
+        if verdict == "Accepted":
+            screenshot_path = self.capture_mock_assessment_screenshot(problem_name)
+            return True, verdict, screenshot_path
+        else:
+            return False, verdict, None
+
+    def select_mock_problem_tab(self, problem_index: int) -> bool:
+        """Switch to another problem tab if multiple questions exist in assessment."""
+        if not self.page:
+            return False
+        try:
+            # Look for tabs labeled Problem 1, Problem 2, Question 1, Question 2, 1, 2, etc.
+            tab_selectors = [
+                f'text:Problem {problem_index}',
+                f'text:Question {problem_index}',
+                f'css:[data-cy="question-tab-{problem_index}"]',
+                f'css:button:text:{problem_index}',
+                f'css:a[href*="question-{problem_index}"]'
+            ]
+            for sel in tab_selectors:
+                el = self.page.ele(sel)
+                if el:
+                    el.click(by_js=True)
+                    time.sleep(2)
+                    return True
+        except Exception:
+            pass
+        return False
 
     # ------------------------------------------------------------------
     # Cleanup
