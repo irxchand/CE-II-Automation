@@ -14,11 +14,10 @@ def get_logger(name: str = "automation"):
         file_handler.setFormatter(file_formatter)
         logger.addHandler(file_handler)
         
-        # Console handler with Rich
-        from rich.console import Console
-        console = Console(highlight=False, legacy_windows=False)
-        console_handler = RichHandler(console=console, rich_tracebacks=True, markup=True)
-        console_handler.setFormatter(formatter)
+        # Console handler
+        console_handler = logging.StreamHandler(sys.stdout)
+        console_formatter = logging.Formatter('[%(asctime)s] %(levelname)-7s: %(message)s', '%H:%M:%S')
+        console_handler.setFormatter(console_formatter)
         logger.addHandler(console_handler)
         
     return logger

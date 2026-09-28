@@ -791,64 +791,7 @@ class BrowserController:
         if not self.page:
             return data
 
-        # 1. Title Extraction
-        title_candidates = [
-            'css:div[data-cy="question-title"]',
-            'css:div[class*="text-title"]',
-            'css:div[class*="question-title"]',
-            'css:h4',
-            'css:div.title',
-            'css:a[class*="title"]',
-            'css:[data-track-load="description_content"] h4',
-        ]
-        for sel in title_candidates:
-            try:
-                el = self.page.ele(sel)
-                if el and el.text and el.text.strip():
-                    data["title"] = el.text.strip()
-                    break
-            except Exception:
-                continue
-
-        # If not found via elements, try document title
-        if not data["title"]:
-            try:
-                doc_title = self.page.title or ""
-                clean_doc = re.sub(r'\s*-\s*(LeetCode|Assessment|Mock Test).*$', '', doc_title, flags=re.IGNORECASE).strip()
-                if clean_doc and clean_doc.lower() != "assessment":
-                    data["title"] = clean_doc
-            except Exception:
-                pass
-
-        # 2. Extract Problem ID and clean title
-        if data["title"]:
-            m = re.match(r'^(?:problem\s*)?#?(\d+)[\.\:\-\s]+(.+)$', data["title"], re.IGNORECASE)
-            if m:
-                data["problem_id"] = m.group(1)
-                data["clean_title"] = m.group(2).strip()
-            else:
-                data["clean_title"] = data["title"]
-        else:
-            data["clean_title"] = ""
-
-        # 3. Description Extraction
-        desc_candidates = [
-            'css:div[data-track-load="description_content"]',
-            'css:div[class*="question-content"]',
-            'css:div[class*="content__"]',
-            'css:div[class*="description"]',
-            'css:div[data-cy="question-detail-main-tabs"]'
-        ]
-        for sel in desc_candidates:
-            try:
-                el = self.page.ele(sel)
-                if el and el.text and el.text.strip():
-                    data["description"] = el.text.strip()
-                    break
-            except Exception:
-                continue
-
-        # 4. Starter Code from Monaco
+        # 1. Starter Code from Monaco
         try:
             starter = self.page.run_js("""
                 if (typeof monaco !== 'undefined' && monaco.editor) {
@@ -865,6 +808,83 @@ class BrowserController:
             data["starter_code"] = (starter or "").strip()
         except Exception:
             data["starter_code"] = ""
+
+        # 2. Title Extraction
+        ignored_phrases = {
+            "you don't have any submissions yet",
+            "you don't have any submissions yet.",
+            "no submissions yet",
+            "submissions",
+            "description",
+            "solutions",
+            "editorial",
+            "assessment",
+            "online assessment",
+            "mock test",
+            "leetcode",
+            "testcase",
+            "result"
+        }
+
+        title_candidates = [
+            'css:div[data-cy="question-title"]',
+            'css:div[class*="text-title-large"]',
+            'css:div[class*="title__"]',
+            'css:div[data-e2e-locator="question-title"]',
+            'css:div[class*="question-title"]',
+            'css:div[class*="text-title"]',
+            'css:div.title',
+            'css:a[class*="title"]',
+            'css:[data-track-load="description_content"] h4',
+        ]
+        for sel in title_candidates:
+            try:
+                el = self.page.ele(sel)
+                if el and el.text and el.text.strip():
+                    txt = el.text.strip()
+                    if txt.lower() not in ignored_phrases and not txt.lower().startswith("you don't have"):
+                        data["title"] = txt
+                        break
+            except Exception:
+                continue
+
+        # If not found via elements, try document title
+        if not data["title"]:
+            try:
+                doc_title = self.page.title or ""
+                clean_doc = re.sub(r'\s*-\s*(LeetCode|Assessment|Mock Test).*$', '', doc_title, flags=re.IGNORECASE).strip()
+                if clean_doc and clean_doc.lower() not in ignored_phrases and clean_doc.lower() != "assessment":
+                    data["title"] = clean_doc
+            except Exception:
+                pass
+
+        # 3. Extract Problem ID and clean title
+        if data["title"]:
+            m = re.match(r'^(?:problem\s*)?#?(\d+)[\.\:\-\s]+(.+)$', data["title"], re.IGNORECASE)
+            if m:
+                data["problem_id"] = m.group(1)
+                data["clean_title"] = m.group(2).strip()
+            else:
+                data["clean_title"] = data["title"]
+        else:
+            data["clean_title"] = ""
+
+        # 4. Description Extraction
+        desc_candidates = [
+            'css:div[data-track-load="description_content"]',
+            'css:div[class*="question-content"]',
+            'css:div[class*="content__"]',
+            'css:div[class*="description"]',
+            'css:div[data-cy="question-detail-main-tabs"]'
+        ]
+        for sel in desc_candidates:
+            try:
+                el = self.page.ele(sel)
+                if el and el.text and el.text.strip():
+                    data["description"] = el.text.strip()
+                    break
+            except Exception:
+                continue
 
         return data
 

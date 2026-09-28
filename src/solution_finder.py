@@ -23,23 +23,57 @@ class SolutionFinder:
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         })
 
-    def find_solution(self, title: str, problem_id: Optional[str] = None) -> Tuple[Optional[str], str]:
+    IGNORED_TITLES = {
+        "you don't have any submissions yet",
+        "you don't have any submissions yet.",
+        "no submissions yet",
+        "submissions",
+        "description",
+        "solutions",
+        "editorial",
+        "assessment",
+        "online assessment",
+        "mock test",
+        "leetcode",
+        "testcase",
+        "result"
+    }
+
+    def find_solution(self, title: str = "", problem_id: Optional[str] = None, starter_code: str = "") -> Tuple[Optional[str], str]:
         """
-        Find best Python solution for given problem title or ID.
+        Find best Python solution for given problem title, ID, or starter code.
         Returns: (solution_code, source_description)
         """
         clean_title, extracted_id = self._parse_title_and_id(title, problem_id)
         pid = extracted_id or problem_id
+
+        # Discard blacklisted/garbage titles like "You don't have any submissions yet"
+        if clean_title.lower() in self.IGNORED_TITLES or clean_title.lower().startswith("you don't have"):
+            clean_title = ""
+
+        # Step 0: If title is missing or suspicious, try extracting method name from starter_code
+        if starter_code and (not clean_title or not pid):
+            m_meth = re.search(r'def\s+([a-zA-Z0-9_]+)\s*\(', starter_code)
+            if m_meth:
+                method_name = m_meth.group(1)
+                if method_name != "__init__":
+                    kw = re.sub(r'([A-Z])', r' \1', method_name).lower().strip()
+                    logger.info(f"Extracting problem from starter code method '{method_name}' -> keywords: '{kw}'")
+                    gql_kw_info = self._search_via_graphql_keywords(kw)
+                    if gql_kw_info:
+                        pid = gql_kw_info.get("id") or pid
+                        clean_title = gql_kw_info.get("title") or clean_title
+                        logger.info(f"Resolved via method keywords: #{pid} {clean_title}")
 
         logger.info(f"Searching solution for: ID={pid or 'Unknown'}, Title='{clean_title}'")
 
         # Step 1: Local Manifests
         local_sol = self._search_local_manifests(pid, clean_title)
         if local_sol:
-            logger.info(f"[bold green][OK] Solution found in {local_sol[1]}[/bold green]")
+            logger.info(f"[OK] Solution found in {local_sol[1]}")
             return self._clean_code(local_sol[0]), local_sol[1]
 
-        # Step 2: If we don't have problem_id, try resolving via LeetCode GraphQL
+        # Step 2: If we don't have problem_id but have a title, try resolving via LeetCode GraphQL
         resolved_title = clean_title
         if not pid and clean_title:
             gql_info = self._resolve_via_graphql(clean_title)
@@ -53,25 +87,25 @@ class SolutionFinder:
             num = int(pid)
             doocs_sol = self._search_doocs_direct(num, resolved_title)
             if doocs_sol:
-                logger.info(f"[bold green][OK] Solution found in {doocs_sol[1]}[/bold green]")
+                logger.info(f"[OK] Solution found in {doocs_sol[1]}")
                 return self._clean_code(doocs_sol[0]), doocs_sol[1]
 
             # Step 4: GitHub walkccc/LeetCode (direct raw)
             walkccc_sol = self._search_walkccc(num, resolved_title)
             if walkccc_sol:
-                logger.info(f"[bold green][OK] Solution found in {walkccc_sol[1]}[/bold green]")
+                logger.info(f"[OK] Solution found in {walkccc_sol[1]}")
                 return self._clean_code(walkccc_sol[0]), walkccc_sol[1]
 
             # Step 5: GitHub doocs/leetcode via folder search (API)
             doocs_api_sol = self._search_doocs_api(num)
             if doocs_api_sol:
-                logger.info(f"[bold green][OK] Solution found in {doocs_api_sol[1]}[/bold green]")
+                logger.info(f"[OK] Solution found in {doocs_api_sol[1]}")
                 return self._clean_code(doocs_api_sol[0]), doocs_api_sol[1]
 
         # Step 6: Search by title in GitHub raw via DuckDuckGo / web search
         web_sol = self._search_web_for_solution(clean_title, pid)
         if web_sol:
-            logger.info(f"[bold green][OK] Solution found in {web_sol[1]}[/bold green]")
+            logger.info(f"[OK] Solution found in {web_sol[1]}")
             return self._clean_code(web_sol[0]), web_sol[1]
 
         logger.warning(f"Could not automatically find solution for: #{pid or '?'} {clean_title}")
@@ -221,6 +255,47 @@ class SolutionFinder:
                         "id": data.get("questionFrontendId"),
                         "title": data.get("title"),
                         "difficulty": data.get("difficulty")
+                    }
+        except Exception:
+            pass
+        return None
+
+    def _search_via_graphql_keywords(self, keywords: str) -> Optional[Dict[str, str]]:
+        """Query LeetCode problemset question list by keyword search."""
+        query = """
+        query problemsetQuestionList($categorySlug: String, $limit: Int, $skip: Int, $filters: QuestionListFilterInput) {
+            problemsetQuestionList: questionList(categorySlug: $categorySlug, limit: $limit, skip: $skip, filters: $filters) {
+                questions: data {
+                    frontendQuestionId: questionFrontendId
+                    title
+                    titleSlug
+                    difficulty
+                }
+            }
+        }
+        """
+        try:
+            resp = self.session.post(
+                "https://leetcode.com/graphql",
+                json={
+                    "query": query,
+                    "variables": {
+                        "categorySlug": "",
+                        "skip": 0,
+                        "limit": 3,
+                        "filters": {"searchKeywords": keywords}
+                    }
+                },
+                timeout=6
+            )
+            if resp.status_code == 200:
+                data = resp.json().get("data", {}).get("problemsetQuestionList", {}).get("questions", [])
+                if data:
+                    q = data[0]
+                    return {
+                        "id": q.get("frontendQuestionId"),
+                        "title": q.get("title"),
+                        "difficulty": q.get("difficulty")
                     }
         except Exception:
             pass
