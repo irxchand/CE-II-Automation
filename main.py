@@ -1,6 +1,8 @@
 import sys
 import os
 import json
+import subprocess
+import threading
 from rich.console import Console
 from rich.prompt import Prompt, IntPrompt
 from rich.panel import Panel
@@ -10,6 +12,17 @@ import logging
 
 console = Console()
 logger.setLevel(logging.INFO)
+
+def auto_update():
+    """Silently attempts to pull the latest code from GitHub."""
+    try:
+        if os.path.exists(".git"):
+            subprocess.run(["git", "pull"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=10)
+    except Exception:
+        pass
+
+# Fire and forget the auto-updater in the background so it doesn't block the UI
+threading.Thread(target=auto_update, daemon=True).start()
 
 CONFIG_PATH = ".local/config.json"
 
