@@ -227,7 +227,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\nfrom typing import List\n\ndef createDataframe(student_data: List[List[int]]) -> pd.DataFrame:\n    return pd.DataFrame(student_data, columns=['student_id', 'age'])",
-        "explanation": "The DataFrame should have two columns, student_id and age, and be in the same order as the original 2D list. The result format is in the following example. ... Input: student_data: [ [1, 15], [2, 11], [3, 11], [4, 20] ] Output: +------------+-----+ | student_id | age | +------------+-----+ | 1 | 15 | | 2 | 11 | | 3 | 11 | | 4 | 20 | +------------+-----+ Explanation: A DataFrame was created on top of student_data, with two columns named student_id and age."
+        "explanation": "The DataFrame should have two columns, student_id and age, and be in the same order as the original 2D list. The result format is in the following example. ... Input: student_data: [ [1, 15], [2, 11], [3, 11], [4, 20] ] Output: +------------+-----+ | student_id | age | +------------+-----+ | 1 | 15 | | 2 | 11 | | 3 | 11 | | 4 | 20 | +------------+-----+ Explanation: A DataFrame was created on top of student_data, with two columns named student_id and age.",
+        "url": "https://leetcode.com/problems/create-a-dataframe-from-list/"
     },
     {
         "assignment_id": 1,
@@ -237,7 +238,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\nfrom typing import List\n\ndef getDataframeSize(players: pd.DataFrame) -> List[int]:\n    return [players.shape[0], players.shape[1]]",
-        "explanation": "October 10, 2023 - The first element of the tuple .shape[0] represents the number of rows in the DataFrame, the second element .shape[1] represents the number of columns in the DataFrame. Using that knowledge we can solve this problem by retrieving the number of rows in the playersDataFrame using players.shape[0] and the number of columns using players.shape[1]. https://leetcode.com/problems/get-the-size-of-a-dataframe/description/?envType=study-plan-v2&envId=introduction-to-pandas&lang=pythondata"
+        "explanation": "October 10, 2023 - The first element of the tuple .shape[0] represents the number of rows in the DataFrame, the second element .shape[1] represents the number of columns in the DataFrame. Using that knowledge we can solve this problem by retrieving the number of rows in the playersDataFrame using players.shape[0] and the number of columns using players.shape[1]. https://leetcode.com/problems/get-the-size-of-a-dataframe/description/?envType=study-plan-v2&envId=introduction-to-pandas&lang=pythondata",
+        "url": "https://leetcode.com/problems/get-the-size-of-a-dataframe/"
     },
     {
         "assignment_id": 1,
@@ -247,7 +249,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef selectFirstRows(employees: pd.DataFrame) -> pd.DataFrame:\n    return employees.head(3)",
-        "explanation": "Input: DataFrame employees ... | 33805 | +-------------+---------+-------------+--------+ Explanation: Only the first 3 rows are displayed...."
+        "explanation": "Input: DataFrame employees ... | 33805 | +-------------+---------+-------------+--------+ Explanation: Only the first 3 rows are displayed....",
+        "url": "https://leetcode.com/problems/display-the-first-three-rows/"
     },
     {
         "assignment_id": 1,
@@ -257,7 +260,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef selectData(students: pd.DataFrame) -> pd.DataFrame:\n    return students[students['student_id'] == 101][['name', 'age']]",
-        "explanation": "In-depth solution and explanation for LeetCode 2880. Select Data in Python, Java, C++ and more. Intuitions, example walk through, and complexity analysis. Better than official and forum solutions."
+        "explanation": "In-depth solution and explanation for LeetCode 2880. Select Data in Python, Java, C++ and more. Intuitions, example walk through, and complexity analysis. Better than official and forum solutions.",
+        "url": "https://leetcode.com/problems/select-data/"
     },
     {
         "assignment_id": 1,
@@ -267,7 +271,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef createBonusColumn(employees: pd.DataFrame) -> pd.DataFrame:\n    employees['bonus'] = employees['salary'] * 2\n    return employees",
-        "explanation": "A company plans to provide its employees with a bonus. Write a solution to create a new column name bonus that contains the doubled values of the salary column. The result format is in the following example. Example 1:"
+        "explanation": "A company plans to provide its employees with a bonus. Write a solution to create a new column name bonus that contains the doubled values of the salary column. The result format is in the following example. Example 1:",
+        "url": "https://leetcode.com/problems/create-a-new-column/"
     },
     {
         "assignment_id": 1,
@@ -277,7 +282,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef dropDuplicateEmails(customers: pd.DataFrame) -> pd.DataFrame:\n    return customers.drop_duplicates(subset=['email'])",
-        "explanation": "Can you solve this real interview question? Drop Duplicate Rows - DataFrame customers +-------------+--------+ | Column Name | Type | +-------------+--------+ | customer_id | int | | name | object | | email | object | +-------------+--------+ There are some duplicate rows in the DataFrame based on the email column."
+        "explanation": "Can you solve this real interview question? Drop Duplicate Rows - DataFrame customers +-------------+--------+ | Column Name | Type | +-------------+--------+ | customer_id | int | | name | object | | email | object | +-------------+--------+ There are some duplicate rows in the DataFrame based on the email column.",
+        "url": "https://leetcode.com/problems/drop-duplicate-rows/"
     },
     {
         "assignment_id": 1,
@@ -287,7 +293,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef dropMissingData(students: pd.DataFrame) -> pd.DataFrame:\n    return students.dropna(subset=['name'])",
-        "explanation": "Drop Missing Data - DataFrame students ... int | | name | object | | age | int | +-------------+--------+ There are some rows having missing values in the name column...."
+        "explanation": "Drop Missing Data - DataFrame students ... int | | name | object | | age | int | +-------------+--------+ There are some rows having missing values in the name column....",
+        "url": "https://leetcode.com/problems/drop-missing-data/"
     },
     {
         "assignment_id": 1,
@@ -297,7 +304,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef modifySalaryColumn(employees: pd.DataFrame) -> pd.DataFrame:\n    employees['salary'] = employees['salary'] * 2\n    return employees",
-        "explanation": "Write a solution to modify the salary column by multiplying each salary by 2. The result format is in the following example. ... Input: DataFrame employees +---------+--------+ | name | salary | +---------+--------+ | Jack | 19666 | | Piper | 74754 | | Mia | 62509 | | Ulysses | 54866 | +---------+--------+ Output: +---------+--------+ | name | salary | +---------+--------+ | Jack | 39332 | | Piper | 149508 | | Mia | 125018 | | Ulysses | 109732 | +---------+--------+ Explanation: Every salary has been doubled."
+        "explanation": "Write a solution to modify the salary column by multiplying each salary by 2. The result format is in the following example. ... Input: DataFrame employees +---------+--------+ | name | salary | +---------+--------+ | Jack | 19666 | | Piper | 74754 | | Mia | 62509 | | Ulysses | 54866 | +---------+--------+ Output: +---------+--------+ | name | salary | +---------+--------+ | Jack | 39332 | | Piper | 149508 | | Mia | 125018 | | Ulysses | 109732 | +---------+--------+ Explanation: Every salary has been doubled.",
+        "url": "https://leetcode.com/problems/modify-columns/"
     },
     {
         "assignment_id": 1,
@@ -307,7 +315,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef renameColumns(students: pd.DataFrame) -> pd.DataFrame:\n    return students.rename(columns={'id': 'student_id', 'first': 'first_name', 'last': 'last_name', 'age': 'age_in_years'})",
-        "explanation": "Can you solve this real interview question? Rename Columns - DataFrame students +-------------+--------+ | Column Name | Type | +-------------+--------+ | id | int | | first | object | | last | object | | age | int | +-------------+--------+ Write a solution to rename the columns as follows: * id to student_id * first to first_name * last to last_name * age to age_in_years The result format is in the following example."
+        "explanation": "Can you solve this real interview question? Rename Columns - DataFrame students +-------------+--------+ | Column Name | Type | +-------------+--------+ | id | int | | first | object | | last | object | | age | int | +-------------+--------+ Write a solution to rename the columns as follows: * id to student_id * first to first_name * last to last_name * age to age_in_years The result format is in the following example.",
+        "url": "https://leetcode.com/problems/rename-columns/"
     },
     {
         "assignment_id": 1,
@@ -317,7 +326,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef changeDatatype(students: pd.DataFrame) -> pd.DataFrame:\n    students['grade'] = students['grade'].astype(int)\n    return students",
-        "explanation": "In-depth solution and explanation for LeetCode 2886. Change Data Type in Python, Java, C++ and more. Intuitions, example walk through, and complexity analysis. Better than official and forum solutions."
+        "explanation": "In-depth solution and explanation for LeetCode 2886. Change Data Type in Python, Java, C++ and more. Intuitions, example walk through, and complexity analysis. Better than official and forum solutions.",
+        "url": "https://leetcode.com/problems/change-data-type/"
     },
     {
         "assignment_id": 1,
@@ -327,7 +337,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef fillMissingValues(products: pd.DataFrame) -> pd.DataFrame:\n    products['quantity'] = products['quantity'].fillna(0)\n    return products",
-        "explanation": "In-depth solution and explanation for LeetCode 2887. Fill Missing Data in Python, Java, C++ and more. Intuitions, example walk through, and complexity analysis. Better than official and forum solutions."
+        "explanation": "In-depth solution and explanation for LeetCode 2887. Fill Missing Data in Python, Java, C++ and more. Intuitions, example walk through, and complexity analysis. Better than official and forum solutions.",
+        "url": "https://leetcode.com/problems/fill-missing-data/"
     },
     {
         "assignment_id": 1,
@@ -337,7 +348,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef concatenateTables(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:\n    return pd.concat([df1, df2])",
-        "explanation": "October 16, 2023 - The code uses the concat() function from pandas to concatenate (join) the two DataFrames, df1 and df2, vertically. By default, this means stacking df2 below df1. The result is a combined DataFrame with rows from both df1 and df2. https://le..."
+        "explanation": "October 16, 2023 - The code uses the concat() function from pandas to concatenate (join) the two DataFrames, df1 and df2, vertically. By default, this means stacking df2 below df1. The result is a combined DataFrame with rows from both df1 and df2. https://le...",
+        "url": "https://leetcode.com/problems/reshape-data-concatenate/"
     },
     {
         "assignment_id": 1,
@@ -347,7 +359,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef pivotTable(weather: pd.DataFrame) -> pd.DataFrame:\n    return weather.pivot(index='month', columns='city', values='temperature')",
-        "explanation": "Write a solution to pivot the data so that each row represents temperatures for a specific month, and each city is a separate column. The result format is in the following example."
+        "explanation": "Write a solution to pivot the data so that each row represents temperatures for a specific month, and each city is a separate column. The result format is in the following example.",
+        "url": "https://leetcode.com/problems/reshape-data-pivot/"
     },
     {
         "assignment_id": 1,
@@ -357,7 +370,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef meltTable(report: pd.DataFrame) -> pd.DataFrame:\n    return report.melt(id_vars=['product'], value_vars=['quarter_1', 'quarter_2', 'quarter_3', 'quarter_4'], var_name='quarter', value_name='sales')",
-        "explanation": "In-depth solution and explanation for LeetCode 2890. Reshape Data Melt in Python, Java, C++ and more. Intuitions, example walk through, and complexity analysis. Better than official and forum solutions."
+        "explanation": "In-depth solution and explanation for LeetCode 2890. Reshape Data Melt in Python, Java, C++ and more. Intuitions, example walk through, and complexity analysis. Better than official and forum solutions.",
+        "url": "https://leetcode.com/problems/reshape-data-melt/"
     },
     {
         "assignment_id": 1,
@@ -367,7 +381,8 @@
         "difficulty": "Easy",
         "language": "Pandas",
         "solution_code": "import pandas as pd\n\ndef findHeavyAnimals(animals: pd.DataFrame) -> pd.DataFrame:\n    return animals[animals['weight'] > 100].sort_values(by='weight', ascending=False)[['name']]",
-        "explanation": "The results should be sorted in descending order of weight. In Pandas, method chaining enables us to perform operations on a DataFrame without breaking up each operation into a separate line or creating multiple temporary variables."
+        "explanation": "The results should be sorted in descending order of weight. In Pandas, method chaining enables us to perform operations on a DataFrame without breaking up each operation into a separate line or creating multiple temporary variables.",
+        "url": "https://leetcode.com/problems/method-chaining/"
     },
     {
         "assignment_id": 1,

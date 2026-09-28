@@ -5,7 +5,8 @@
         "leetcode_id": 1,
         "title": "Two Sum",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/two-sum/"
     },
     {
         "assignment_id": 1,
@@ -13,7 +14,8 @@
         "leetcode_id": 13,
         "title": "Roman to Integer",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/roman-to-integer/"
     },
     {
         "assignment_id": 1,
@@ -21,7 +23,8 @@
         "leetcode_id": 14,
         "title": "Longest Common Prefix",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/longest-common-prefix/"
     },
     {
         "assignment_id": 1,
@@ -29,7 +32,8 @@
         "leetcode_id": 20,
         "title": "Valid Parentheses",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/valid-parentheses/"
     },
     {
         "assignment_id": 1,
@@ -37,7 +41,8 @@
         "leetcode_id": 26,
         "title": "Remove Duplicates from Sorted Array",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/"
     },
     {
         "assignment_id": 1,
@@ -45,7 +50,8 @@
         "leetcode_id": 27,
         "title": "Remove Element",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/remove-element/"
     },
     {
         "assignment_id": 1,
@@ -53,7 +59,8 @@
         "leetcode_id": 35,
         "title": "Search Insert Position",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/search-insert-position/"
     },
     {
         "assignment_id": 1,
@@ -61,7 +68,8 @@
         "leetcode_id": 58,
         "title": "Length of Last Word",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/length-of-last-word/"
     },
     {
         "assignment_id": 1,
@@ -69,7 +77,8 @@
         "leetcode_id": 66,
         "title": "Plus One",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/plus-one/"
     },
     {
         "assignment_id": 1,
@@ -77,7 +86,8 @@
         "leetcode_id": 67,
         "title": "Add Binary",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/add-binary/"
     },
     {
         "assignment_id": 1,
@@ -85,7 +95,8 @@
         "leetcode_id": 69,
         "title": "Sqrt(x)",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/sqrtx/"
     },
     {
         "assignment_id": 1,
@@ -93,7 +104,8 @@
         "leetcode_id": 70,
         "title": "Climbing Stairs",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/climbing-stairs/"
     },
     {
         "assignment_id": 1,
@@ -101,7 +113,8 @@
         "leetcode_id": 118,
         "title": "Pascal's Triangle",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/pascals-triangle/"
     },
     {
         "assignment_id": 1,
@@ -109,7 +122,8 @@
         "leetcode_id": 121,
         "title": "Best Time to Buy and Sell Stock",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
     },
     {
         "assignment_id": 1,
@@ -117,7 +131,8 @@
         "leetcode_id": 125,
         "title": "Valid Palindrome",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/valid-palindrome/"
     },
     {
         "assignment_id": 1,
@@ -125,7 +140,8 @@
         "leetcode_id": 169,
         "title": "Majority Element",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/majority-element/"
     },
     {
         "assignment_id": 1,
@@ -133,7 +149,8 @@
         "leetcode_id": 202,
         "title": "Happy Number",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/happy-number/"
     },
     {
         "assignment_id": 1,
@@ -141,7 +158,8 @@
         "leetcode_id": 217,
         "title": "Contains Duplicate",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/contains-duplicate/"
     },
     {
         "assignment_id": 1,
@@ -149,7 +167,8 @@
         "leetcode_id": 242,
         "title": "Valid Anagram",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/valid-anagram/"
     },
     {
         "assignment_id": 1,
@@ -157,7 +176,8 @@
         "leetcode_id": 283,
         "title": "Move Zeroes",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/move-zeroes/"
     },
     {
         "assignment_id": 1,
@@ -165,7 +185,8 @@
         "leetcode_id": 2877,
         "title": "Create a DataFrame from List",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/create-a-dataframe-from-list/"
     },
     {
         "assignment_id": 1,
@@ -173,7 +194,8 @@
         "leetcode_id": 2878,
         "title": "Get the Size of a DataFrame",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/get-the-size-of-a-dataframe/"
     },
     {
         "assignment_id": 1,
@@ -181,7 +203,8 @@
         "leetcode_id": 2879,
         "title": "Display the First Three Rows",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/display-the-first-three-rows/"
     },
     {
         "assignment_id": 1,
@@ -189,7 +212,8 @@
         "leetcode_id": 2880,
         "title": "Select Data",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/select-data/"
     },
     {
         "assignment_id": 1,
@@ -197,7 +221,8 @@
         "leetcode_id": 2881,
         "title": "Create a New Column",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/create-a-new-column/"
     },
     {
         "assignment_id": 1,
@@ -205,7 +230,8 @@
         "leetcode_id": 2882,
         "title": "Drop Duplicate Rows",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/drop-duplicate-rows/"
     },
     {
         "assignment_id": 1,
@@ -213,7 +239,8 @@
         "leetcode_id": 2883,
         "title": "Drop Missing Data",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/drop-missing-data/"
     },
     {
         "assignment_id": 1,
@@ -221,7 +248,8 @@
         "leetcode_id": 2884,
         "title": "Modify Columns",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/modify-columns/"
     },
     {
         "assignment_id": 1,
@@ -229,7 +257,8 @@
         "leetcode_id": 2885,
         "title": "Rename Columns",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/rename-columns/"
     },
     {
         "assignment_id": 1,
@@ -237,7 +266,8 @@
         "leetcode_id": 2886,
         "title": "Change Data Type",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/change-data-type/"
     },
     {
         "assignment_id": 1,
@@ -245,7 +275,8 @@
         "leetcode_id": 2887,
         "title": "Fill Missing Data",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/fill-missing-data/"
     },
     {
         "assignment_id": 1,
@@ -253,7 +284,8 @@
         "leetcode_id": 2888,
         "title": "Reshape Data: Concatenate",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/reshape-data-concatenate/"
     },
     {
         "assignment_id": 1,
@@ -261,7 +293,8 @@
         "leetcode_id": 2889,
         "title": "Reshape Data: Pivot",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/reshape-data-pivot/"
     },
     {
         "assignment_id": 1,
@@ -269,7 +302,8 @@
         "leetcode_id": 2890,
         "title": "Reshape Data: Melt",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/reshape-data-melt/"
     },
     {
         "assignment_id": 1,
@@ -277,7 +311,8 @@
         "leetcode_id": 2891,
         "title": "Method Chaining",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/method-chaining/"
     },
     {
         "assignment_id": 1,
@@ -285,7 +320,8 @@
         "leetcode_id": 175,
         "title": "Combine Two Tables",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/combine-two-tables/"
     },
     {
         "assignment_id": 1,
@@ -293,7 +329,8 @@
         "leetcode_id": 577,
         "title": "Employee Bonus",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/employee-bonus/"
     },
     {
         "assignment_id": 1,
@@ -301,7 +338,8 @@
         "leetcode_id": 584,
         "title": "Find Customer Referee",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/find-customer-referee/"
     },
     {
         "assignment_id": 1,
@@ -309,7 +347,8 @@
         "leetcode_id": 595,
         "title": "Big Countries",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/big-countries/"
     },
     {
         "assignment_id": 1,
@@ -317,7 +356,8 @@
         "leetcode_id": 1068,
         "title": "Product Sales Analysis I",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/product-sales-analysis-i/"
     },
     {
         "assignment_id": 1,
@@ -325,7 +365,8 @@
         "leetcode_id": 176,
         "title": "Second Highest Salary",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/second-highest-salary/"
     },
     {
         "assignment_id": 1,
@@ -333,7 +374,8 @@
         "leetcode_id": 178,
         "title": "Rank Scores",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/rank-scores/"
     },
     {
         "assignment_id": 1,
@@ -341,7 +383,8 @@
         "leetcode_id": 184,
         "title": "Department Highest Salary",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/department-highest-salary/"
     },
     {
         "assignment_id": 1,
@@ -349,7 +392,8 @@
         "leetcode_id": 197,
         "title": "Rising Temperature",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/rising-temperature/"
     },
     {
         "assignment_id": 1,
@@ -357,7 +401,8 @@
         "leetcode_id": 511,
         "title": "Game Play Analysis I",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/game-play-analysis-i/"
     },
     {
         "assignment_id": 1,
@@ -365,7 +410,8 @@
         "leetcode_id": 550,
         "title": "Game Play Analysis IV",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/game-play-analysis-iv/"
     },
     {
         "assignment_id": 1,
@@ -373,7 +419,8 @@
         "leetcode_id": 570,
         "title": "Managers with at Least 5 Direct Reports",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/managers-with-at-least-5-direct-reports/"
     },
     {
         "assignment_id": 1,
@@ -381,7 +428,8 @@
         "leetcode_id": 586,
         "title": "Customer Placing the Largest Number of Orders",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/"
     },
     {
         "assignment_id": 1,
@@ -389,7 +437,8 @@
         "leetcode_id": 596,
         "title": "Classes More Than 5 Students",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/classes-with-at-least-5-students/"
     },
     {
         "assignment_id": 1,
@@ -397,6 +446,7 @@
         "leetcode_id": 1179,
         "title": "Reformat Department Table",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/reformat-department-table/"
     }
 ]

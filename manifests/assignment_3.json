@@ -5,7 +5,8 @@
         "leetcode_id": 177,
         "title": "Nth Highest Salary",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/nth-highest-salary/"
     },
     {
         "assignment_id": 3,
@@ -13,7 +14,8 @@
         "leetcode_id": 180,
         "title": "Consecutive Numbers",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/consecutive-numbers/"
     },
     {
         "assignment_id": 3,
@@ -21,7 +23,8 @@
         "leetcode_id": 181,
         "title": "Employees Earning More Than Their Managers",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/employees-earning-more-than-their-managers/"
     },
     {
         "assignment_id": 3,
@@ -29,7 +32,8 @@
         "leetcode_id": 182,
         "title": "Duplicate Emails",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/duplicate-emails/"
     },
     {
         "assignment_id": 3,
@@ -37,7 +41,8 @@
         "leetcode_id": 183,
         "title": "Customers Who Never Order",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/customers-who-never-order/"
     },
     {
         "assignment_id": 3,
@@ -45,7 +50,8 @@
         "leetcode_id": 185,
         "title": "Department Top Three Salaries",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/department-top-three-salaries/"
     },
     {
         "assignment_id": 3,
@@ -53,7 +59,8 @@
         "leetcode_id": 196,
         "title": "Delete Duplicate Emails",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/delete-duplicate-emails/"
     },
     {
         "assignment_id": 3,
@@ -61,7 +68,8 @@
         "leetcode_id": 262,
         "title": "Trips and Users",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/trips-and-users/"
     },
     {
         "assignment_id": 3,
@@ -69,7 +77,8 @@
         "leetcode_id": 534,
         "title": "Game Play Analysis III",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/game-play-analysis-iii/"
     },
     {
         "assignment_id": 3,
@@ -77,7 +86,8 @@
         "leetcode_id": 569,
         "title": "Median Employee Salary",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/median-employee-salary/"
     },
     {
         "assignment_id": 3,
@@ -85,7 +95,8 @@
         "leetcode_id": 578,
         "title": "Get Highest Answer Rate Question",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/get-highest-answer-rate-question/"
     },
     {
         "assignment_id": 3,
@@ -93,7 +104,8 @@
         "leetcode_id": 580,
         "title": "Count Student Number in Departments",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/count-student-number-in-departments/"
     },
     {
         "assignment_id": 3,
@@ -101,7 +113,8 @@
         "leetcode_id": 601,
         "title": "Human Traffic of Stadium",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/human-traffic-of-stadium/"
     },
     {
         "assignment_id": 3,
@@ -109,7 +122,8 @@
         "leetcode_id": 602,
         "title": "Friend Requests II: Who Has the Most Friends",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/friend-requests-ii-who-has-the-most-friends/"
     },
     {
         "assignment_id": 3,
@@ -117,7 +131,8 @@
         "leetcode_id": 607,
         "title": "Sales Person",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/sales-person/"
     },
     {
         "assignment_id": 3,
@@ -125,7 +140,8 @@
         "leetcode_id": 608,
         "title": "Tree Node",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/tree-node/"
     },
     {
         "assignment_id": 3,
@@ -133,7 +149,8 @@
         "leetcode_id": 610,
         "title": "Triangle Judgement",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/triangle-judgement/"
     },
     {
         "assignment_id": 3,
@@ -141,7 +158,8 @@
         "leetcode_id": 612,
         "title": "Shortest Distance in a Plane",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/shortest-distance-in-a-plane/"
     },
     {
         "assignment_id": 3,
@@ -149,7 +167,8 @@
         "leetcode_id": 613,
         "title": "Shortest Distance in a Line",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/shortest-distance-in-a-line/"
     },
     {
         "assignment_id": 3,
@@ -157,7 +176,8 @@
         "leetcode_id": 614,
         "title": "Second Degree Follower",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/second-degree-follower/"
     },
     {
         "assignment_id": 3,
@@ -165,7 +185,8 @@
         "leetcode_id": 615,
         "title": "Average Salary: Departments vs Company",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/average-salary-departments-vs-company/"
     },
     {
         "assignment_id": 3,
@@ -173,7 +194,8 @@
         "leetcode_id": 618,
         "title": "Students Report By Geography",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/students-report-by-geography/"
     },
     {
         "assignment_id": 3,
@@ -181,7 +203,8 @@
         "leetcode_id": 619,
         "title": "Biggest Single Number",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/biggest-single-number/"
     },
     {
         "assignment_id": 3,
@@ -189,7 +212,8 @@
         "leetcode_id": 620,
         "title": "Not Boring Movies",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/not-boring-movies/"
     },
     {
         "assignment_id": 3,
@@ -197,7 +221,8 @@
         "leetcode_id": 626,
         "title": "Exchange Seats",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/exchange-seats/"
     },
     {
         "assignment_id": 3,
@@ -205,7 +230,8 @@
         "leetcode_id": 627,
         "title": "Swap Salary",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/swap-sex-of-employees/"
     },
     {
         "assignment_id": 3,
@@ -213,7 +239,8 @@
         "leetcode_id": 1045,
         "title": "Customers Who Bought All Products",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/customers-who-bought-all-products/"
     },
     {
         "assignment_id": 3,
@@ -221,7 +248,8 @@
         "leetcode_id": 1070,
         "title": "Product Sales Analysis III",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/product-sales-analysis-iii/"
     },
     {
         "assignment_id": 3,
@@ -229,7 +257,8 @@
         "leetcode_id": 1076,
         "title": "Project Employees II",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/project-employees-ii/"
     },
     {
         "assignment_id": 3,
@@ -237,7 +266,8 @@
         "leetcode_id": 1077,
         "title": "Project Employees III",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/project-employees-iii/"
     },
     {
         "assignment_id": 3,
@@ -245,7 +275,8 @@
         "leetcode_id": 1082,
         "title": "Sales Analysis I",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/sales-analysis-i/"
     },
     {
         "assignment_id": 3,
@@ -253,7 +284,8 @@
         "leetcode_id": 1083,
         "title": "Sales Analysis II",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/sales-analysis-ii/"
     },
     {
         "assignment_id": 3,
@@ -261,7 +293,8 @@
         "leetcode_id": 1084,
         "title": "Sales Analysis III",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/sales-analysis-iii/"
     },
     {
         "assignment_id": 3,
@@ -269,7 +302,8 @@
         "leetcode_id": 1097,
         "title": "Game Play Analysis V",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/game-play-analysis-v/"
     },
     {
         "assignment_id": 3,
@@ -277,7 +311,8 @@
         "leetcode_id": 1098,
         "title": "Unpopular Books",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/unpopular-books/"
     },
     {
         "assignment_id": 3,
@@ -285,7 +320,8 @@
         "leetcode_id": 1112,
         "title": "Highest Grade For Each Student",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/highest-grade-for-each-student/"
     },
     {
         "assignment_id": 3,
@@ -293,7 +329,8 @@
         "leetcode_id": 1126,
         "title": "Active Businesses",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/active-businesses/"
     },
     {
         "assignment_id": 3,
@@ -301,7 +338,8 @@
         "leetcode_id": 1127,
         "title": "User Purchase Platform",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/user-purchase-platform/"
     },
     {
         "assignment_id": 3,
@@ -309,7 +347,8 @@
         "leetcode_id": 1132,
         "title": "Reported Posts II",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/reported-posts-ii/"
     },
     {
         "assignment_id": 3,
@@ -317,7 +356,8 @@
         "leetcode_id": 1141,
         "title": "User Activity for the Past 30 Days I",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/user-activity-for-the-past-30-days-i/"
     },
     {
         "assignment_id": 3,
@@ -325,7 +365,8 @@
         "leetcode_id": 1142,
         "title": "User Activity for the Past 30 Days II",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/user-activity-for-the-past-30-days-ii/"
     },
     {
         "assignment_id": 3,
@@ -333,7 +374,8 @@
         "leetcode_id": 1148,
         "title": "Article Views I",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/article-views-i/"
     },
     {
         "assignment_id": 3,
@@ -341,7 +383,8 @@
         "leetcode_id": 1149,
         "title": "Article Views II",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/article-views-ii/"
     },
     {
         "assignment_id": 3,
@@ -349,7 +392,8 @@
         "leetcode_id": 1158,
         "title": "Market Analysis I",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/market-analysis-i/"
     },
     {
         "assignment_id": 3,
@@ -357,7 +401,8 @@
         "leetcode_id": 1164,
         "title": "Product Price at a Given Date",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/product-price-at-a-given-date/"
     },
     {
         "assignment_id": 3,
@@ -365,7 +410,8 @@
         "leetcode_id": 1173,
         "title": "Immediate Food Delivery I",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/immediate-food-delivery-i/"
     },
     {
         "assignment_id": 3,
@@ -373,7 +419,8 @@
         "leetcode_id": 1174,
         "title": "Immediate Food Delivery II",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/immediate-food-delivery-ii/"
     },
     {
         "assignment_id": 3,
@@ -381,7 +428,8 @@
         "leetcode_id": 1193,
         "title": "Monthly Transactions I",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/monthly-transactions-i/"
     },
     {
         "assignment_id": 3,
@@ -389,7 +437,8 @@
         "leetcode_id": 1204,
         "title": "Last Person to Fit in the Bus",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/last-person-to-fit-in-the-bus/"
     },
     {
         "assignment_id": 3,
@@ -397,6 +446,7 @@
         "leetcode_id": 1211,
         "title": "Queries Quality and Percentage",
         "difficulty": "Easy",
-        "language": "MySQL"
+        "language": "MySQL",
+        "url": "https://leetcode.com/problems/queries-quality-and-percentage/"
     }
 ]

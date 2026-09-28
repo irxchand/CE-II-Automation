@@ -5,7 +5,8 @@
         "leetcode_id": 21,
         "title": "Merge Two Sorted Lists",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/merge-two-sorted-lists/"
     },
     {
         "assignment_id": 2,
@@ -13,7 +14,8 @@
         "leetcode_id": 83,
         "title": "Remove Duplicates from Sorted List",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-list/"
     },
     {
         "assignment_id": 2,
@@ -21,7 +23,8 @@
         "leetcode_id": 141,
         "title": "Linked List Cycle",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/linked-list-cycle/"
     },
     {
         "assignment_id": 2,
@@ -29,7 +32,8 @@
         "leetcode_id": 160,
         "title": "Intersection of Two Linked Lists",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/intersection-of-two-linked-lists/"
     },
     {
         "assignment_id": 2,
@@ -37,7 +41,8 @@
         "leetcode_id": 203,
         "title": "Remove Linked List Elements",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/remove-linked-list-elements/"
     },
     {
         "assignment_id": 2,
@@ -45,7 +50,8 @@
         "leetcode_id": 206,
         "title": "Reverse Linked List",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/reverse-linked-list/"
     },
     {
         "assignment_id": 2,
@@ -53,7 +59,8 @@
         "leetcode_id": 225,
         "title": "Implement Stack using Queues",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/implement-stack-using-queues/"
     },
     {
         "assignment_id": 2,
@@ -61,7 +68,8 @@
         "leetcode_id": 232,
         "title": "Implement Queue using Stacks",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/implement-queue-using-stacks/"
     },
     {
         "assignment_id": 2,
@@ -69,7 +77,8 @@
         "leetcode_id": 234,
         "title": "Palindrome Linked List",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/palindrome-linked-list/"
     },
     {
         "assignment_id": 2,
@@ -77,7 +86,8 @@
         "leetcode_id": 235,
         "title": "Lowest Common Ancestor of a BST",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/"
     },
     {
         "assignment_id": 2,
@@ -85,7 +95,8 @@
         "leetcode_id": 237,
         "title": "Delete Node in a Linked List",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/delete-node-in-a-linked-list/"
     },
     {
         "assignment_id": 2,
@@ -93,7 +104,8 @@
         "leetcode_id": 257,
         "title": "Binary Tree Paths",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/binary-tree-paths/"
     },
     {
         "assignment_id": 2,
@@ -101,7 +113,8 @@
         "leetcode_id": 303,
         "title": "Range Sum Query \u2013 Immutable",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/range-sum-query-immutable/"
     },
     {
         "assignment_id": 2,
@@ -109,7 +122,8 @@
         "leetcode_id": 346,
         "title": "Moving Average from Data Stream",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/moving-average-from-data-stream/"
     },
     {
         "assignment_id": 2,
@@ -117,7 +131,8 @@
         "leetcode_id": 349,
         "title": "Intersection of Two Arrays",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/intersection-of-two-arrays/"
     },
     {
         "assignment_id": 2,
@@ -125,7 +140,8 @@
         "leetcode_id": 404,
         "title": "Sum of Left Leaves",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/sum-of-left-leaves/"
     },
     {
         "assignment_id": 2,
@@ -133,7 +149,8 @@
         "leetcode_id": 429,
         "title": "N-ary Tree Level Order Traversal",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/n-ary-tree-level-order-traversal/"
     },
     {
         "assignment_id": 2,
@@ -141,7 +158,8 @@
         "leetcode_id": 496,
         "title": "Next Greater Element I",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/next-greater-element-i/"
     },
     {
         "assignment_id": 2,
@@ -149,7 +167,8 @@
         "leetcode_id": 530,
         "title": "Minimum Absolute Difference in BST",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/minimum-absolute-difference-in-bst/"
     },
     {
         "assignment_id": 2,
@@ -157,7 +176,8 @@
         "leetcode_id": 543,
         "title": "Diameter of Binary Tree",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/diameter-of-binary-tree/"
     },
     {
         "assignment_id": 2,
@@ -165,7 +185,8 @@
         "leetcode_id": 559,
         "title": "Maximum Depth of N-ary Tree",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/maximum-depth-of-n-ary-tree/"
     },
     {
         "assignment_id": 2,
@@ -173,7 +194,8 @@
         "leetcode_id": 563,
         "title": "Binary Tree Tilt",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/binary-tree-tilt/"
     },
     {
         "assignment_id": 2,
@@ -181,7 +203,8 @@
         "leetcode_id": 572,
         "title": "Subtree of Another Tree",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/subtree-of-another-tree/"
     },
     {
         "assignment_id": 2,
@@ -189,7 +212,8 @@
         "leetcode_id": 589,
         "title": "N-ary Tree Preorder Traversal",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/n-ary-tree-preorder-traversal/"
     },
     {
         "assignment_id": 2,
@@ -197,7 +221,8 @@
         "leetcode_id": 590,
         "title": "N-ary Tree Postorder Traversal",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/n-ary-tree-postorder-traversal/"
     },
     {
         "assignment_id": 2,
@@ -205,7 +230,8 @@
         "leetcode_id": 617,
         "title": "Merge Two Binary Trees",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/merge-two-binary-trees/"
     },
     {
         "assignment_id": 2,
@@ -213,7 +239,8 @@
         "leetcode_id": 637,
         "title": "Average of Levels in Binary Tree",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/average-of-levels-in-binary-tree/"
     },
     {
         "assignment_id": 2,
@@ -221,7 +248,8 @@
         "leetcode_id": 653,
         "title": "Two Sum IV \u2013 Input is a BST",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/two-sum-iv-input-is-a-bst/"
     },
     {
         "assignment_id": 2,
@@ -229,7 +257,8 @@
         "leetcode_id": 671,
         "title": "Second Minimum Node in a Binary Tree",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/"
     },
     {
         "assignment_id": 2,
@@ -237,7 +266,8 @@
         "leetcode_id": 682,
         "title": "Baseball Game",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/baseball-game/"
     },
     {
         "assignment_id": 2,
@@ -245,7 +275,8 @@
         "leetcode_id": 700,
         "title": "Search in a Binary Search Tree",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/search-in-a-binary-search-tree/"
     },
     {
         "assignment_id": 2,
@@ -253,7 +284,8 @@
         "leetcode_id": 703,
         "title": "Kth Largest Element in a Stream",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
     },
     {
         "assignment_id": 2,
@@ -261,7 +293,8 @@
         "leetcode_id": 705,
         "title": "Design HashSet",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/design-hashset/"
     },
     {
         "assignment_id": 2,
@@ -269,7 +302,8 @@
         "leetcode_id": 706,
         "title": "Design HashMap",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/design-hashmap/"
     },
     {
         "assignment_id": 2,
@@ -277,7 +311,8 @@
         "leetcode_id": 724,
         "title": "Find Pivot Index",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/find-pivot-index/"
     },
     {
         "assignment_id": 2,
@@ -285,7 +320,8 @@
         "leetcode_id": 733,
         "title": "Flood Fill",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/flood-fill/"
     },
     {
         "assignment_id": 2,
@@ -293,7 +329,8 @@
         "leetcode_id": 844,
         "title": "Backspace String Compare",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/backspace-string-compare/"
     },
     {
         "assignment_id": 2,
@@ -301,7 +338,8 @@
         "leetcode_id": 872,
         "title": "Leaf-Similar Trees",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/leaf-similar-trees/"
     },
     {
         "assignment_id": 2,
@@ -309,7 +347,8 @@
         "leetcode_id": 876,
         "title": "Middle of the Linked List",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/middle-of-the-linked-list/"
     },
     {
         "assignment_id": 2,
@@ -317,7 +356,8 @@
         "leetcode_id": 897,
         "title": "Increasing Order Search Tree",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/increasing-order-search-tree/"
     },
     {
         "assignment_id": 2,
@@ -325,7 +365,8 @@
         "leetcode_id": 905,
         "title": "Sort Array By Parity",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/sort-array-by-parity/"
     },
     {
         "assignment_id": 2,
@@ -333,7 +374,8 @@
         "leetcode_id": 933,
         "title": "Number of Recent Calls",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/number-of-recent-calls/"
     },
     {
         "assignment_id": 2,
@@ -341,7 +383,8 @@
         "leetcode_id": 938,
         "title": "Range Sum of BST",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/range-sum-of-bst/"
     },
     {
         "assignment_id": 2,
@@ -349,7 +392,8 @@
         "leetcode_id": 965,
         "title": "Univalued Binary Tree",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/univalued-binary-tree/"
     },
     {
         "assignment_id": 2,
@@ -357,7 +401,8 @@
         "leetcode_id": 1022,
         "title": "Sum of Root To Leaf Binary Numbers",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/"
     },
     {
         "assignment_id": 2,
@@ -365,7 +410,8 @@
         "leetcode_id": 86,
         "title": "Partition List",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/partition-list/"
     },
     {
         "assignment_id": 2,
@@ -373,7 +419,8 @@
         "leetcode_id": 143,
         "title": "Reorder List",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/reorder-list/"
     },
     {
         "assignment_id": 2,
@@ -381,7 +428,8 @@
         "leetcode_id": 146,
         "title": "LRU Cache",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/lru-cache/"
     },
     {
         "assignment_id": 2,
@@ -389,7 +437,8 @@
         "leetcode_id": 173,
         "title": "Binary Search Tree Iterator",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/binary-search-tree-iterator/"
     },
     {
         "assignment_id": 2,
@@ -397,6 +446,7 @@
         "leetcode_id": 622,
         "title": "Design Circular Queue",
         "difficulty": "Easy",
-        "language": "Python"
+        "language": "Python",
+        "url": "https://leetcode.com/problems/design-circular-queue/"
     }
 ]
