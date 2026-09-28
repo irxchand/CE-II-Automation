@@ -316,11 +316,34 @@ class BrowserController:
 
     def initialize(self) -> None:
         logger.info("Initializing DrissionPage...")
+        # Clear any stale class-level caches from previous runs in the same process
+        try:
+            from DrissionPage import ChromiumPage
+            from DrissionPage._base.chromium import Chromium
+            ChromiumPage._PAGES.clear()
+            Chromium._BROWSERS.clear()
+        except Exception:
+            pass
+
         co = ChromiumOptions()
         co.set_user_data_path(self.profile_dir)
         co.set_argument('--window-size=1280,800')
         co.set_pref('profile.default_content_setting_values.clipboard', 1)
-        self.page = ChromiumPage(co)
+
+        try:
+            self.page = ChromiumPage(co)
+        except Exception as e:
+            logger.warning(f"Initial DrissionPage connection failed ({e}). Re-clearing cached sessions and retrying...")
+            try:
+                from DrissionPage import ChromiumPage
+                from DrissionPage._base.chromium import Chromium
+                ChromiumPage._PAGES.clear()
+                Chromium._BROWSERS.clear()
+            except Exception:
+                pass
+            time.sleep(1)
+            self.page = ChromiumPage(co)
+
         self._editor_adapter = EditorAdapter(self.page)
 
     # ------------------------------------------------------------------
@@ -331,30 +354,30 @@ class BrowserController:
         """Detect and recover from a disconnected browser page."""
         try:
             _ = self.page.url  # Probe connection
-            return "READY"
+            return True
         except (PageDisconnectedError, Exception):
             logger.warning("Page disconnected. Attempting to reinitialise...")
             try:
                 self.initialize()
-                return "READY"
+                return True
             except Exception as e:
                 logger.error(f"Reinitialisation failed: {e}")
-                return "TIMEOUT"
+                return False
 
     def _safe_navigate(self, url: str, retries: int = 2) -> bool:
         """Navigate to *url* with disconnect recovery."""
         for attempt in range(retries):
             try:
                 self.page.get(url)
-                return "READY"
+                return True
             except PageDisconnectedError:
                 logger.warning(f"PageDisconnectedError during navigation (attempt {attempt+1})")
                 if not self._reconnect_if_needed():
-                    return "TIMEOUT"
+                    return False
             except Exception as e:
                 logger.error(f"Navigation error: {e}")
-                return "TIMEOUT"
-        return "TIMEOUT"
+                return False
+        return False
 
     # ------------------------------------------------------------------
     # Authentication
@@ -704,3 +727,13 @@ class BrowserController:
                 self.page.quit()
         except Exception:
             pass
+        finally:
+            self.page = None
+            self._editor_adapter = None
+            try:
+                from DrissionPage import ChromiumPage
+                from DrissionPage._base.chromium import Chromium
+                ChromiumPage._PAGES.clear()
+                Chromium._BROWSERS.clear()
+            except Exception:
+                pass
