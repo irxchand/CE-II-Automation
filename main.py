@@ -47,8 +47,7 @@ def cmd_config():
     batch = Prompt.ask("Enter your Batch", default=current.get("batch", ""))
     username = Prompt.ask("Enter your LeetCode Username", default=current.get("username", ""))
     
-    screenshots_dir = Prompt.ask("Enter Screenshots Directory", default=current.get("screenshots_dir", "screenshots"))
-    reports_dir = Prompt.ask("Enter Reports Directory", default=current.get("reports_dir", "assignments"))
+    reports_dir = Prompt.ask("Enter Reports Directory", default=current.get("reports_dir", ".local/assignments"))
     
     save_config({
         "name": name,
@@ -56,7 +55,7 @@ def cmd_config():
         "division": division,
         "batch": batch,
         "username": username,
-        "screenshots_dir": screenshots_dir,
+        "screenshots_dir": ".local/screenshots",
         "reports_dir": reports_dir
     })
     console.print("\n[bold green]\u2714 Configuration saved successfully.[/bold green]\n")
@@ -86,8 +85,8 @@ def cmd_run():
     orchestrator = Orchestrator(
         expected_username=config["username"], 
         prn=config["prn"], 
-        screenshots_dir=config.get("screenshots_dir", "screenshots"), 
-        reports_dir=config.get("reports_dir", "assignments")
+        screenshots_dir=".local/screenshots", 
+        reports_dir=config.get("reports_dir", ".local/assignments")
     )
     try:
         if assignment_id == "4":
@@ -123,8 +122,8 @@ def cmd_report():
     orchestrator = Orchestrator(
         expected_username=config["username"], 
         prn=config["prn"], 
-        screenshots_dir=config.get("screenshots_dir", "screenshots"), 
-        reports_dir=config.get("reports_dir", "assignments")
+        screenshots_dir=".local/screenshots", 
+        reports_dir=config.get("reports_dir", ".local/assignments")
     )
     try:
         if assignment_id == "4":

@@ -595,7 +595,14 @@ class BrowserController:
                     logger.warning(f"Page navigated away from result (URL: {self.page.url}). Navigating back.")
                     self.page.back()
                     time.sleep(2)
-                self.page.get_screenshot(path=screenshot_path)
+                
+                # Maximize window and take full page screenshot to prevent empty/cropped images
+                try:
+                    self.page.set.window.max()
+                    time.sleep(1)
+                except:
+                    pass
+                self.page.get_screenshot(path=screenshot_path, full_page=True)
                 logger.info(f"[bold cyan]Screenshot captured:[/bold cyan] [cyan]{screenshot_path}[/cyan]")
             except Exception as e:
                 logger.warning(f"Screenshot capture failed: {e}")
