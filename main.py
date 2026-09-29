@@ -14,9 +14,6 @@ console = Console()
 logger.setLevel(logging.INFO)
 
 
-# Pull latest changes in the background before showing the menu
-threading.Thread(target=auto_update, daemon=True).start()
-
 CONFIG_PATH = ".local/config.json"
 
 def load_config():
