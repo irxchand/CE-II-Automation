@@ -13,21 +13,6 @@ import logging
 console = Console()
 logger.setLevel(logging.INFO)
 
-def auto_update():
-    """Pulls the latest code from GitHub and notifies if updates were applied."""
-    try:
-        if not os.path.exists(".git"):
-            return
-        result = subprocess.run(
-            ["git", "pull"],
-            capture_output=True, text=True, timeout=15
-        )
-        output = result.stdout.strip()
-        if output and "Already up to date." not in output and output:
-            # New commits were pulled — notify the user at next menu render
-            console.print(f"\n[bold green]🔄 Auto-Updated:[/bold green] {output}\n")
-    except Exception:
-        pass  # Network issues or git not installed — fail silently
 
 # Pull latest changes in the background before showing the menu
 threading.Thread(target=auto_update, daemon=True).start()
